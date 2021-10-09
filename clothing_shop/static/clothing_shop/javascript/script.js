@@ -23,16 +23,16 @@ function mainSectionEventHandler() {
       }
       mainSectionEl.style.backgroundImage = `url(${newImgURL})`;
       mainSectionTitleEl.innerHTML = newTitle;
-      addActiveClassNameToElement(e.target);
+      addActiveClassNameToElement(e.target, "link--active");
     });
 }
-function addActiveClassNameToElement(element) {
+function addActiveClassNameToElement(element, className) {
   const parentEl = element.parentElement;
   const elementSiblings = [...parentEl.children];
   elementSiblings.forEach((el) => {
-    el.classList.remove("link--active");
+    el.classList.remove(className);
   });
-  element.classList.add("link--active");
+  element.classList.add(className);
 }
 function init() {
   mainSectionEventHandler();
