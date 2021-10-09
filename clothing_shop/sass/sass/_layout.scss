@@ -6,3 +6,13 @@
   padding: 0 5rem;
   height: 5rem;
 }
+.section-main {
+  height: 40vw;
+  background-image: url(model-image-1.jpg);
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(3, 1fr) 2fr repeat(4, 1fr);
+  justify-items: center;
+}

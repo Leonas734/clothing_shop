@@ -1,6 +1,5 @@
-{% load static %}
-
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -22,15 +21,15 @@
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="#" class="nav__link-logo official-logo"
-          >Shoppo<span class="nav__link-logo-dot official-logo-dot">.</span></a
+        <a href="#" class="nav__logo -logo"
+          >Shoppo<span class="-logo-dot">.</span></a
         >
-        <a href="#" class="nav__link nav__link--active">Home</a>
-        <a href="#" class="nav__link">Shop</a>
-        <a href="#" class="nav__link">Blog</a>
-        <a href="#" class="nav__link">Pages</a>
-        <a href="#" class="nav__link">Contact us</a>
-        <svg class="nav__link nav__link-cart">
+        <a href="#" class="link link--active link">Home</a>
+        <a href="#" class="link">Shop</a>
+        <a href="#" class="link">Blog</a>
+        <a href="#" class="link">Pages</a>
+        <a href="#" class="link">Contact us</a>
+        <svg class="link nav__cart">
           <use
             xlink:href="{% static 'clothing_shop/sprite.svg' %}#icon-shopping-basket "
           ></use>

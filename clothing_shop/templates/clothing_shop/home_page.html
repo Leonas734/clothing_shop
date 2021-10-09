@@ -1,11 +1,21 @@
 <!-- prettier-ignore -->
 {% extends "./base_template.html" %} 
+{% load static %}
 
 {% block title %} Shoppo {% endblock %}
 {% block body %}
 <div class="homepage_container">
   <section class="section-main">
-    <h1>Section - Main</h1>
+    <h2 class="section-main__hashtag hashtag-small">#ShoppoStore</h2>
+    <h1 class="section-main__title large-title">Simplify<br />Everything.</h1>
+    <button class="section-main__button explore-now-btn">Explore now</button>
+    <div class="section-main__links links">
+      <a href="#" class="link-1 link link--active">Women</a>
+      |
+      <a href="#" class="link">Men</a>
+      |
+      <a href="#" class="link">Sale</a>
+    </div>
   </section>
   <section class="section-for-her">
     <h1>Section - For her</h1>
