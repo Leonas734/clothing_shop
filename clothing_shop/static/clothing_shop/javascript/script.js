@@ -14,7 +14,7 @@ function mainSectionEventHandler() {
         newTitle = "Simplify<br>Everything";
       } else if (targetClassNames.includes("men")) {
         newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-2.jpg`;
-        newTitle = "Recycabled<br>Sweaters";
+        newTitle = "Recycled<br>Sweaters";
       } else if (targetClassNames.includes("sale")) {
         newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/sale-image-1.jpg`;
         newTitle = "Autumn<br>Sale";
