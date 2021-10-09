@@ -9,7 +9,17 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
+    <script
+      type="text/javascript"
+      defer
+      src="{% static 'clothing_shop/javascript/script.js' %}"
+    ></script>
 
+    <script type="text/javascript">
+      NG_STATIC_FILES = {
+        STATIC_URL: "{% static 'clothing_shop/' %}",
+      };
+    </script>
     <link
       rel="stylesheet"
       type="text/css"
@@ -31,7 +41,7 @@
         <a href="#" class="link">Contact us</a>
         <svg class="link nav__cart">
           <use
-            xlink:href="{% static 'clothing_shop/sprite.svg' %}#icon-shopping-basket "
+            xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
           ></use>
         </svg>
       </nav>

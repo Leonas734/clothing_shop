@@ -8,8 +8,10 @@
 }
 .section-main {
   height: 40vw;
-  background-image: url(model-image-1.jpg);
+  background-image: url(./img/model-image-1.jpg);
+  // background-position: center;
   overflow: hidden;
+  transition: background 1s;
 
   display: grid;
   grid-template-columns: 1fr 1fr;
