@@ -11,7 +11,8 @@ class Product(models.Model):
     category = models.CharField(max_length=30, default='other')
     dateOfUpload = models.DateField(default=timezone.now)
     images = models.ImageField(upload_to='images/')
-    tags = models.CharField(max_length=500, default='male,female,')
+    tags = models.CharField(max_length=500)
+    sex = models.CharField(max_length=6, choices = (('women', 'WOMEN'), ('men', 'MEN')), default='women')
 
     def __str__(self):
         return self.title

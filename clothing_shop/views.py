@@ -6,8 +6,14 @@ from .models import Product, ProductImage
 
 def home_page_view(request):
     allProducts = Product.objects.all()
-    products = dict()
+    womenProducts = dict()
+    menProducts = dict()
     for index, product in enumerate(allProducts):
-        productsImgs = ProductImage.objects.filter(product=product)
-        products[index] = {'product': product, 'productImgs': productsImgs}
-    return render(request, 'clothing_shop/home_page.html', {'products': products})
+        if product.sex == 'women':
+            productsImgs = ProductImage.objects.filter(product=product)
+            womenProducts[index] = {'product': product, 'productImgs': productsImgs}
+        if product.sex == 'men':
+            productsImgs = ProductImage.objects.filter(product=product)
+            menProducts[index] = {'product': product, 'productImgs': productsImgs}
+
+    return render(request, 'clothing_shop/home_page.html', {'womenProducts': womenProducts, 'menProducts': menProducts})

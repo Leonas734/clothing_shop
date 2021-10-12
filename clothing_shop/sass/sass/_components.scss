@@ -135,6 +135,7 @@
   column-gap: 2rem;
   overflow: hidden;
   padding: 0 2rem;
+
   // Left side of grid
   &__shop-now {
     &-women {
@@ -142,7 +143,7 @@
       grid-row: categories-end/ row-end;
     }
     &-men {
-      grid-column: main-start / main-end;
+      grid-column: main-end / column-end;
       grid-row: categories-end/ row-end;
     }
 
@@ -154,6 +155,10 @@
       margin-top: -2rem;
       padding-bottom: 5.2rem;
       font-size: 5rem;
+      color: $color-primary;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-transform: uppercase;
     }
 
     &__img {
@@ -181,7 +186,7 @@
       grid-row: categories-start / categories-end;
     }
     &-men {
-      grid-column: main-end / column-end;
+      grid-column: main-start/ main-end;
       grid-row: categories-start / categories-end;
     }
 
@@ -199,6 +204,10 @@
   &__products {
     &-women {
       grid-column: main-end/ column-end;
+      grid-row: categories-end / row-end;
+    }
+    &-men {
+      grid-column: main-start/ main-end;
       grid-row: categories-end / row-end;
     }
     grid-column-gap: 2rem;

@@ -20,7 +20,7 @@
   <section class="section-for-her">
     <div class="shop-outfit-women shop-outfit">
       <div class="shop-outfit__shop-now shop-outfit__shop-now-women">
-        <h2 class="shop-outfit__shop-now__title hash-tag-medium">#forher</h2>
+        <h2 class="shop-outfit__shop-now__title">For her</h2>
         <img
           src="{% static 'clothing_shop/img/blue-dress.jpg' %}"
           alt=""
@@ -37,7 +37,7 @@
         <a href="#" class="category link">Accessories</a>
       </div>
       <div class="shop-outfit__products shop-outfit__products-women">
-        {% for product in products.values %}
+        {% for product in womenProducts.values %}
         <div class="shop-outfit__product">
           <div class="shop-outfit__product-title">
             {{ product.product.title }}
@@ -85,7 +85,61 @@
     </div>
   </section>
   <section class="section-for-him">
-    <h1>Section - For him</h1>
+    <div class="shop-outfit-men shop-outfit">
+      <div class="shop-outfit__shop-now shop-outfit__shop-now-men">
+        <h2 class="shop-outfit__shop-now__title">For him</h2>
+        <img
+          src="{% static 'clothing_shop/img/blue-suit.jpg' %}"
+          alt=""
+          class="shop-outfit__shop-now__img"
+        />
+        <button class="shop-outfit__shop-now__btn">Shop now</button>
+      </div>
+      <div class="shop-outfit__categories shop-outfit__categories-men">
+        <a href="#" class="category link link link--active">All</a>
+        <a href="#" class="category link">Blazers</a>
+        <a href="#" class="category link">Jackets</a>
+        <a href="#" class="category link">Dresses</a>
+        <a href="#" class="category link">Trousers</a>
+        <a href="#" class="category link">Accessories</a>
+      </div>
+      <div class="shop-outfit__products shop-outfit__products-men">
+        {% for product in menProducts.values %}
+        <div class="shop-outfit__product">
+          <div class="shop-outfit__product-title">
+            {{ product.product.title }}
+          </div>
+          <div class="shop-outfit__product-price">
+            £{{ product.product.price }}
+          </div>
+          <div class="shop-outfit__product-image-container">
+            <svg
+              class="
+                shop-outfit__product-arrow shop-outfit__product-arrow-right
+              "
+            >
+              <use
+                class="arrow-right"
+                xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-chevron-with-circle-right "
+              ></use>
+            </svg>
+            {% for img in product.productImgs %}
+            <!-- prettier-ignore -->
+            <img src={{ img.images.url}} alt="Product image" class="shop-outfit__product-image shop-outfit__product-image-offset-{{forloop.counter}}">
+            {% endfor %}
+            <svg
+              class="shop-outfit__product-arrow shop-outfit__product-arrow-left"
+            >
+              <use
+                class="arrow-left"
+                xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-chevron-with-circle-left "
+              ></use>
+            </svg>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
   </section>
   <section class="section-sale">
     <h1>Section - Sale</h1>

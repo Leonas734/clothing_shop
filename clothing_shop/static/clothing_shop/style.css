@@ -42,6 +42,10 @@ body {
   display: grid;
   grid-template-columns: 60% 1fr; }
 
+.section-for-him {
+  height: 70vw;
+  margin-top: -2rem; }
+
 .-logo {
   color: #383838;
   text-transform: lowercase;
@@ -156,12 +160,16 @@ body {
       grid-column: main-start / main-end;
       grid-row: categories-end/ row-end; }
     .shop-outfit__shop-now-men {
-      grid-column: main-start / main-end;
+      grid-column: main-end / column-end;
       grid-row: categories-end/ row-end; }
     .shop-outfit__shop-now__title {
       margin-top: -2rem;
       padding-bottom: 5.2rem;
-      font-size: 5rem; }
+      font-size: 5rem;
+      color: #383838;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-transform: uppercase; }
     .shop-outfit__shop-now__img {
       width: 100%; }
     .shop-outfit__shop-now__btn {
@@ -183,7 +191,7 @@ body {
       grid-column: main-end / column-end;
       grid-row: categories-start / categories-end; }
     .shop-outfit__categories-men {
-      grid-column: main-end / column-end;
+      grid-column: main-start/ main-end;
       grid-row: categories-start / categories-end; }
     .shop-outfit__categories > .category {
       font-size: 1rem;
@@ -200,6 +208,9 @@ body {
     grid-template-rows: [row-start product-row-1] 1fr [product-row-2] 1fr [row-end]; }
     .shop-outfit__products-women {
       grid-column: main-end/ column-end;
+      grid-row: categories-end / row-end; }
+    .shop-outfit__products-men {
+      grid-column: main-start/ main-end;
       grid-row: categories-end / row-end; }
   .shop-outfit__product {
     display: grid;

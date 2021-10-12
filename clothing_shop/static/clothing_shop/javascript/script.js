@@ -97,6 +97,8 @@ function init() {
     ".shop-outfit__products-women"
   );
   addImageSliderToProducts(womenProductsEl);
+  const menProductsEl = document.querySelector(".shop-outfit__products-men");
+  addImageSliderToProducts(menProductsEl);
 }
 
 init();
