@@ -18,7 +18,61 @@
     </div>
   </section>
   <section class="section-for-her">
-    <h1>Section - For her</h1>
+    <div class="shop-outfit">
+      <div class="shop-outfit__shop-now">
+        <h2 class="shop-outfit__shop-now__title hash-tag-medium">#forher</h2>
+        <img
+          src="{% static 'clothing_shop/img/blue-dress.jpg' %}"
+          alt=""
+          class="shop-outfit__shop-now__img"
+        />
+        <button class="shop-outfit__shop-now__btn">Shop now</button>
+      </div>
+      <div class="shop-outfit__categories">
+        <a href="#" class="category link link link--active">All</a>
+        <a href="#" class="category link">Blazers</a>
+        <a href="#" class="category link">Jackets</a>
+        <a href="#" class="category link">Dresses</a>
+        <a href="#" class="category link">Trousers</a>
+        <a href="#" class="category link">Accessories</a>
+      </div>
+      <div class="shop-outfit__products-women">
+        {% for product in products.values %}
+        <div class="shop-outfit__product">
+          <div class="shop-outfit__product-title">
+            {{ product.product.title }}
+          </div>
+          <div class="shop-outfit__product-price">
+            £{{ product.product.price }}
+          </div>
+          <div class="shop-outfit__product-image-container">
+            <svg
+              class="
+                shop-outfit__product-arrow shop-outfit__product-arrow-right
+              "
+            >
+              <use
+                class="arrow-right"
+                xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-chevron-with-circle-right "
+              ></use>
+            </svg>
+            {% for img in product.productImgs %}
+            <!-- prettier-ignore -->
+            <img src={{ img.images.url}} alt="Product image" class="shop-outfit__product-image shop-outfit__product-image-offset-{{forloop.counter}}">
+            {% endfor %}
+            <svg
+              class="shop-outfit__product-arrow shop-outfit__product-arrow-left"
+            >
+              <use
+                class="arrow-left"
+                xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-chevron-with-circle-left "
+              ></use>
+            </svg>
+          </div>
+        </div>
+        {% endfor %} {% endblock %}
+      </div>
+    </div>
   </section>
   <section class="section-new-arrivals">
     <h1>Section - New arrivals</h1>
@@ -31,5 +85,3 @@
   </section>
   <footer>This is the footer</footer>
 </div>
-
-{% endblock %}

@@ -27,8 +27,16 @@
 
   &--active {
     text-decoration: underline;
+    color: $color-primary-dark;
     text-underline-offset: 2px;
   }
+}
+
+.hash-tag-medium {
+  font-size: 4.2rem;
+  color: $color-primary;
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 //// NAVIGATION BAR
@@ -55,6 +63,9 @@
 
 //// MAIN
 .section-main {
+  background-image: url(./img/model-image-1.jpg);
+  overflow: hidden;
+  transition: background 1s;
   color: $color-primary-light;
 
   &__hashtag {
@@ -102,6 +113,148 @@
 
     > a {
       font-size: 1rem;
+    }
+  }
+}
+
+/// Womens outfit section
+.shop-outfit {
+  display: grid;
+  height: 100%;
+  align-items: start;
+  justify-items: center;
+
+  grid-template-columns: [column-start main-start]40%[main-end] 1fr[column-end];
+  grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
+  row-gap: 1rem;
+  column-gap: 2rem;
+  overflow: hidden;
+  padding: 0 2rem;
+  // Left side of grid
+  &__shop-now {
+    grid-column: main-start / main-end;
+    grid-row: categories-end/ row-end;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    &__title {
+      margin-top: -2rem;
+      padding-bottom: 5.2rem;
+      font-size: 5rem;
+    }
+
+    &__img {
+      width: 100%;
+    }
+
+    &__btn {
+      font-weight: 600;
+      border: none;
+      text-transform: uppercase;
+      padding: 1.5rem 4rem;
+      background-color: white;
+      color: $color-primary-light;
+      font-size: 1rem;
+      position: absolute;
+      top: 85%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  // Nav bar top of grid
+  &__categories {
+    grid-column: main-end / column-end;
+    grid-row: categories-start / categories-end;
+    justify-self: start;
+    align-self: end;
+
+    > .category {
+      font-size: 1rem;
+      padding-left: 0;
+      padding-right: 3rem;
+      text-decoration: none;
+    }
+  }
+  // Products
+  &__products-women {
+    grid-column-gap: 2rem;
+    padding-top: 2rem;
+    width: 100%;
+    height: 100%;
+    grid-column: main-end/ column-end;
+    grid-row: categories-end / row-end;
+
+    display: grid;
+    grid-template-columns: [column-start product-column-1] 1fr [product-column-2] 1fr [product-column-3] 1fr [column-end];
+    grid-template-rows: [row-start product-row-1] 1fr [product-row-2] 1fr [row-end];
+  }
+
+  &__product {
+    display: grid;
+    grid-template-rows: 80% 10% 10%;
+    &-title {
+      padding-top: 0.5rem;
+      text-align: center;
+      grid-row: 2/3;
+      color: $color-primary-light;
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+    &-price {
+      text-align: center;
+      grid-row: 3/4;
+    }
+    &-image-container {
+      grid-row: 1/2;
+      overflow: hidden;
+      position: relative;
+    }
+    &-image {
+      height: 100%;
+      width: 100%;
+      object-fit: contain;
+      position: absolute;
+      transition: transform 1s;
+    }
+
+    &-arrow {
+      fill: $color-primary-light;
+      z-index: 1;
+      position: absolute;
+      height: 2rem;
+      width: 2rem;
+      top: 50%;
+      &-left {
+        left: 2%;
+      }
+      &-right {
+        right: 2%;
+      }
+    }
+
+    &-1 {
+      grid-column: product-column-1 / product-column-2;
+      grid-row: product-row-1 / product-row-2;
+    }
+    &-2 {
+      grid-column: product-column-2 / product-column-3;
+      grid-row: product-row-1 / product-row-2;
+    }
+    &-3 {
+      grid-column: product-column-3 / column-end;
+      grid-row: product-row-1 / product-row-2;
+    }
+    &-4 {
+      grid-column: product-column-1 / product-column-2;
+      grid-row: product-row-2 / row-end;
+    }
+    &-5 {
+      grid-column: product-column-2 / product-column-3;
+      grid-row: product-row-2 / row-end;
+    }
+    &-6 {
+      grid-column: product-column-3 / column-end;
+      grid-row: product-row-2 / row-end;
     }
   }
 }
