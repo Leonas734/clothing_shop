@@ -38,8 +38,8 @@ function addActiveClassNameToElement(element, className) {
 function addImageSliderToProducts(parentEl) {
   let products = [...parentEl.children];
   products.forEach((productDiv) => {
-    const productDivChildElms = [...productDiv.children];
-    productDivChildElms.forEach((productEl) => {
+    const productChildElms = [...productDiv.children];
+    productChildElms.forEach((productEl) => {
       if (!isImgContainer(productEl)) return;
       const imgContainerDiv = productEl;
       const productImgs = [...imgContainerDiv.getElementsByTagName("img")];
