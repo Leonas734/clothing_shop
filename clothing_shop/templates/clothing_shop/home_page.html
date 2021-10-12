@@ -18,8 +18,8 @@
     </div>
   </section>
   <section class="section-for-her">
-    <div class="shop-outfit">
-      <div class="shop-outfit__shop-now">
+    <div class="shop-outfit-women shop-outfit">
+      <div class="shop-outfit__shop-now shop-outfit__shop-now-women">
         <h2 class="shop-outfit__shop-now__title hash-tag-medium">#forher</h2>
         <img
           src="{% static 'clothing_shop/img/blue-dress.jpg' %}"
@@ -28,7 +28,7 @@
         />
         <button class="shop-outfit__shop-now__btn">Shop now</button>
       </div>
-      <div class="shop-outfit__categories">
+      <div class="shop-outfit__categories shop-outfit__categories-women">
         <a href="#" class="category link link link--active">All</a>
         <a href="#" class="category link">Blazers</a>
         <a href="#" class="category link">Jackets</a>
@@ -36,7 +36,7 @@
         <a href="#" class="category link">Trousers</a>
         <a href="#" class="category link">Accessories</a>
       </div>
-      <div class="shop-outfit__products-women">
+      <div class="shop-outfit__products shop-outfit__products-women">
         {% for product in products.values %}
         <div class="shop-outfit__product">
           <div class="shop-outfit__product-title">

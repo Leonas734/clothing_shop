@@ -39,7 +39,6 @@
   text-underline-offset: 3px;
 }
 
-//// NAVIGATION BAR
 .nav {
   display: flex;
   align-items: baseline;
@@ -61,7 +60,6 @@
   }
 }
 
-//// MAIN
 .section-main {
   background-image: url(./img/model-image-1.jpg);
   overflow: hidden;
@@ -117,26 +115,41 @@
   }
 }
 
-/// Womens outfit section
 .shop-outfit {
   display: grid;
   height: 100%;
   align-items: start;
   justify-items: center;
 
-  grid-template-columns: [column-start main-start]40%[main-end] 1fr[column-end];
-  grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
+  &-women {
+    grid-template-columns: [column-start main-start]40%[main-end] 1fr[column-end];
+    grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
+  }
+
+  &-men {
+    grid-template-columns: [column-start main-start]1fr[main-end] 40%[column-end];
+    grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
+  }
+
   row-gap: 1rem;
   column-gap: 2rem;
   overflow: hidden;
   padding: 0 2rem;
   // Left side of grid
   &__shop-now {
-    grid-column: main-start / main-end;
-    grid-row: categories-end/ row-end;
+    &-women {
+      grid-column: main-start / main-end;
+      grid-row: categories-end/ row-end;
+    }
+    &-men {
+      grid-column: main-start / main-end;
+      grid-row: categories-end/ row-end;
+    }
+
     text-align: center;
     position: relative;
     width: 100%;
+
     &__title {
       margin-top: -2rem;
       padding-bottom: 5.2rem;
@@ -163,8 +176,15 @@
   }
   // Nav bar top of grid
   &__categories {
-    grid-column: main-end / column-end;
-    grid-row: categories-start / categories-end;
+    &-women {
+      grid-column: main-end / column-end;
+      grid-row: categories-start / categories-end;
+    }
+    &-men {
+      grid-column: main-end / column-end;
+      grid-row: categories-start / categories-end;
+    }
+
     justify-self: start;
     align-self: end;
 
@@ -176,13 +196,15 @@
     }
   }
   // Products
-  &__products-women {
+  &__products {
+    &-women {
+      grid-column: main-end/ column-end;
+      grid-row: categories-end / row-end;
+    }
     grid-column-gap: 2rem;
     padding-top: 2rem;
     width: 100%;
     height: 100%;
-    grid-column: main-end/ column-end;
-    grid-row: categories-end / row-end;
 
     display: grid;
     grid-template-columns: [column-start product-column-1] 1fr [product-column-2] 1fr [product-column-3] 1fr [column-end];
