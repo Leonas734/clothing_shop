@@ -36,6 +36,12 @@ body {
   height: 70vw;
   margin-top: -2rem; }
 
+.section-new-arrivals {
+  height: 25vw;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 60% 1fr; }
+
 .-logo {
   color: #383838;
   text-transform: lowercase;
@@ -234,3 +240,47 @@ body {
     .shop-outfit__product-6 {
       grid-column: product-column-3 / column-end;
       grid-row: product-row-2 / row-end; }
+
+.section-new-arrivals {
+  background-image: url(./img/new-arrivals-img-3.jpg);
+  background-size: cover;
+  background-position: 0 80%; }
+  .section-new-arrivals-textbox {
+    z-index: 2;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center; }
+  .section-new-arrivals__title {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    background-color: #383838;
+    color: #fff;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase; }
+  .section-new-arrivals__text {
+    margin-top: 12rem;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: #383838; }
+  .section-new-arrivals__link {
+    margin-top: 19rem;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    font-size: 1.4rem; }
+  .section-new-arrivals__background-text {
+    margin-bottom: 20rem;
+    justify-self: center;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    font-size: 10rem;
+    color: rgba(80, 79, 79, 0.2);
+    z-index: 1;
+    letter-spacing: 2rem; }

@@ -258,3 +258,55 @@
     }
   }
 }
+
+.section-new-arrivals {
+  background-image: url(./img/new-arrivals-img-3.jpg);
+  background-size: cover;
+  background-position: 0 80%;
+
+  &-textbox {
+    z-index: 2;
+    grid-row: 1/2;
+    grid-column: 2/3;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    align-items: center;
+  }
+
+  &__title {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    background-color: $color-primary;
+    color: $color-white;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+  }
+  &__text {
+    margin-top: 12rem;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: $color-primary;
+  }
+  &__link {
+    margin-top: 19rem;
+    grid-row: 1/2;
+    grid-column: 1/2;
+    font-size: 1.4rem;
+  }
+  &__background-text {
+    margin-bottom: 20rem;
+    justify-self: center;
+    grid-column: 1/2;
+    grid-row: 1/2;
+    font-size: 10rem;
+    color: rgba($color-primary-light, 0.2);
+    z-index: 1;
+    letter-spacing: 2rem;
+  }
+}

@@ -18,3 +18,10 @@
   height: 70vw;
   margin-top: -2rem;
 }
+
+.section-new-arrivals {
+  height: 25vw;
+  margin: 2rem;
+  display: grid;
+  grid-template-columns: 60% 1fr;
+}
