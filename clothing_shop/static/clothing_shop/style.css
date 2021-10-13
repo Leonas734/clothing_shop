@@ -49,7 +49,8 @@ body {
 .section-sale {
   height: 35vh;
   display: grid;
-  grid-template-columns: 1fr 1fr; }
+  grid-template-columns: 1fr 1fr;
+  grid-column-gap: 1.5rem; }
 
 .-logo {
   color: #383838;
@@ -344,7 +345,8 @@ body {
     background-image: url(./img/sale-women.jpg);
     background-size: cover;
     background-position: 0 30%;
-    position: relative; }
+    position: relative;
+    transition: all 0.5s; }
     .section-sale__woman-text {
       writing-mode: vertical-lr;
       margin-top: 5rem;
@@ -368,7 +370,8 @@ body {
     background-position: 0 20%;
     position: relative;
     display: flex;
-    height: 100%; }
+    height: 100%;
+    transition: all 0.5s; }
     .section-sale__man-text {
       margin-left: auto;
       writing-mode: vertical-rl;

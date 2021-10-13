@@ -355,6 +355,7 @@
     text-align: center;
     border: solid 1px $color-white;
     padding: 2rem;
+
     &-text-box {
       background-color: $color-white;
       padding: 2rem 4rem;
@@ -381,6 +382,7 @@
     background-size: cover;
     background-position: 0 30%;
     position: relative;
+    transition: all 0.5s;
 
     &-text {
       writing-mode: vertical-lr;
@@ -411,6 +413,7 @@
     position: relative;
     display: flex;
     height: 100%;
+    transition: all 0.5s;
 
     &-text {
       margin-left: auto;

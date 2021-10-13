@@ -1,4 +1,13 @@
-function mainSectionEventHandler() {
+function addActiveClassNameToElement(element, className) {
+  const parentEl = element.parentElement;
+  const elementSiblings = [...parentEl.children];
+  elementSiblings.forEach((el) => {
+    el.classList.remove(className);
+  });
+  element.classList.add(className);
+}
+
+function mainSectionClickEventHandler() {
   document
     .querySelector(".section-main__links")
     .addEventListener("click", (e) => {
@@ -25,14 +34,6 @@ function mainSectionEventHandler() {
       mainSectionTitleEl.innerHTML = newTitle;
       addActiveClassNameToElement(e.target, "link--active");
     });
-}
-function addActiveClassNameToElement(element, className) {
-  const parentEl = element.parentElement;
-  const elementSiblings = [...parentEl.children];
-  elementSiblings.forEach((el) => {
-    el.classList.remove(className);
-  });
-  element.classList.add(className);
 }
 
 function addImageSliderToProducts(parentEl) {
@@ -91,14 +92,49 @@ function addImageSliderToProducts(parentEl) {
   }
 }
 
+function addSaleSectionHoverEffect() {
+  const saleDiv = document.querySelector(".section-sale");
+  const manSaleSection = document.querySelector(".section-sale__man");
+  const womanSaleSection = document.querySelector(".section-sale__woman");
+
+  saleDiv.addEventListener("mouseover", (e) => {
+    const divClassNames = e.target.classList.value;
+    if (divClassNames.includes("section-sale__man")) {
+      womanSaleSection.style.opacity = "50%";
+      manSaleSection.style.transform = "scale(1.1)";
+      womanSaleSection.style.transform = "scale(0.95)";
+    }
+    if (divClassNames.includes("section-sale__woman")) {
+      manSaleSection.style.opacity = "50%";
+      womanSaleSection.style.transform = "scale(1.1)";
+      manSaleSection.style.transform = "scale(0.95)";
+    }
+  });
+
+  saleDiv.addEventListener("mouseout", (e) => {
+    const divClassNames = e.target.classList.value;
+    if (
+      divClassNames.includes("section-sale__man") ||
+      divClassNames.includes("section-sale__woman")
+    ) {
+      womanSaleSection.style.opacity = "100%";
+      manSaleSection.style.opacity = "100%";
+      manSaleSection.style.transform = "scale(1)";
+      womanSaleSection.style.transform = "scale(1)";
+    }
+  });
+}
+
 function init() {
-  mainSectionEventHandler();
+  mainSectionClickEventHandler();
   const womenProductsEl = document.querySelector(
     ".shop-outfit__products-women"
   );
   addImageSliderToProducts(womenProductsEl);
   const menProductsEl = document.querySelector(".shop-outfit__products-men");
   addImageSliderToProducts(menProductsEl);
+
+  addSaleSectionHoverEffect();
 }
 
 init();
