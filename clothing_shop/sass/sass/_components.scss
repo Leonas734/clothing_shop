@@ -1,9 +1,12 @@
-.-logo {
+.logo {
   color: $color-primary;
   text-transform: lowercase;
   font-weight: 500;
   font-size: 4rem;
   letter-spacing: 1px;
+  text-decoration: none;
+  font-size: 3rem;
+
   &-dot {
     color: $color-secondary;
   }
@@ -32,6 +35,22 @@
   }
 }
 
+.btn {
+  width: 14rem;
+  height: 4rem;
+  text-transform: uppercase;
+  background-color: $color-primary;
+  color: white;
+  border: none;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-top: 1.5rem;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
 .hash-tag-medium {
   font-size: 4.2rem;
   color: $color-primary;
@@ -46,8 +65,6 @@
 
   &__logo {
     padding-right: 3rem;
-    font-size: 3rem;
-    text-decoration: none;
   }
 
   &__cart {
@@ -88,19 +105,6 @@
   &__button {
     grid-column: 1/2;
     grid-row: 5/6;
-    width: 14rem;
-    height: 4rem;
-    text-transform: uppercase;
-    background-color: $color-primary;
-    color: white;
-    border: none;
-    font-weight: 600;
-    transition: 0.3s;
-    margin-top: 1.5rem;
-
-    &:hover {
-      transform: scale(1.1);
-    }
   }
 
   &__links {
@@ -136,7 +140,6 @@
   overflow: hidden;
   padding: 0 2rem;
 
-  // Left side of grid
   &__shop-now {
     &-women {
       grid-column: main-start / main-end;
@@ -156,8 +159,6 @@
       padding-bottom: 5.2rem;
       font-size: 5rem;
       color: $color-primary;
-      text-decoration: underline;
-      text-underline-offset: 3px;
       text-transform: uppercase;
     }
 
@@ -224,7 +225,7 @@
     display: grid;
     grid-template-rows: 80% 10% 10%;
     &-title {
-      padding-top: 0.5rem;
+      padding-top: 1rem;
       text-align: center;
       grid-row: 2/3;
       color: $color-primary-light;
@@ -437,6 +438,100 @@
       top: 85%;
 
       background-color: $color-primary-dark;
+    }
+  }
+}
+
+.footer {
+  background-color: $color-primary-very-light;
+  &__copyright {
+    grid-column: 1/2;
+    padding-left: 1rem;
+
+    &-text {
+      color: $color-primary-light;
+    }
+  }
+
+  &__about {
+    grid-column: 3/4;
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &-link {
+      padding: 0;
+      margin: 0;
+    }
+
+    &-link:hover {
+      transform: none;
+      color: initial;
+    }
+  }
+
+  &__shopguide {
+    grid-column: 4/5;
+    display: flex;
+    flex-direction: column;
+
+    &-title {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    &-link {
+      padding: 0;
+      margin: 0;
+    }
+
+    &-link:hover {
+      transform: none;
+      color: initial;
+    }
+  }
+
+  &__newsletter {
+    grid-column: 5/6;
+    display: grid;
+    flex-direction: column;
+    position: relative;
+    &-title {
+      font-size: 1.5rem;
+    }
+
+    &-form {
+      > label {
+        display: block;
+        text-transform: uppercase;
+        font-size: 1.1rem;
+        color: $color-primary-light;
+        margin-bottom: 1rem;
+      }
+
+      > input {
+        width: 80%;
+        border: none;
+        height: 2.5rem;
+        padding: 2rem;
+        display: inline;
+      }
+      > button {
+        position: absolute;
+        margin-left: auto;
+        margin-top: 0;
+        height: 4rem;
+        width: 24%;
+        right: 8rem;
+      }
+
+      > button:hover {
+        transform: scale(1);
+      }
     }
   }
 }

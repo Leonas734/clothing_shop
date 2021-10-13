@@ -21,7 +21,7 @@
 
 .section-new-arrivals {
   height: 25vw;
-  margin: 2rem;
+  margin: 2rem 2rem 0 2rem;
   display: grid;
   grid-template-columns: 60% 1fr;
 }
@@ -36,4 +36,14 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-column-gap: 1.5rem;
+}
+
+.footer {
+  height: 25vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 35%;
+  align-items: center;
+
+  margin-top: 2rem;
+  padding: 0 2rem;
 }

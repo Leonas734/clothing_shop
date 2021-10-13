@@ -31,8 +31,8 @@
   <body>
     <header class="header">
       <nav class="nav">
-        <a href="#" class="nav__logo -logo"
-          >Shoppo<span class="-logo-dot">.</span></a
+        <a href="#" class="nav__logo logo"
+          >Shoppo<span class="logo-dot">.</span></a
         >
         <a href="#" class="link link--active link">Home</a>
         <a href="#" class="link">Shop</a>
@@ -48,5 +48,48 @@
     </header>
 
     {% block body %}{% endblock %}
+    <footer class="footer">
+      <div class="footer__copyright">
+        <a href="#" class="footer__copyright-title logo"
+          >Shoppo<span class="logo-dot">.</span></a
+        >
+        <p class="footer__copyright-text">
+          This website was built for educational purposes. I do not own any of
+          the images shown on this website. All rights and credit go directly to
+          its rightful owners. No copyright infringement intended.
+        </p>
+      </div>
+      <div class="footer__about">
+        <div class="footer__about-title">About Shoppo</div>
+        <a href="#" class="footer__about-link link">About us</a>
+        <a href="#" class="footer__about-link link">Stores</a>
+        <a href="#" class="footer__about-link link">Work with us</a>
+        <a href="#" class="footer__about-link link">Our policies</a>
+        <a href="#" class="footer__about-link link">Loyalty card</a>
+      </div>
+      <div class="footer__shopguide">
+        <div class="footer__shopguide-title">Shop guide</div>
+        <a href="#" class="footer__shopguide-link link">Payment</a>
+        <a href="#" class="footer__shopguide-link link">Returns</a>
+        <a href="#" class="footer__shopguide-link link">Gift card</a>
+        <a href="#" class="footer__shopguide-link link">Guest purchase</a>
+        <a href="#" class="footer__shopguide-link link">Terms & conditions</a>
+      </div>
+      <div class="footer__newsletter">
+        <div class="footer__newsletter-title">Newsletter</div>
+        <form class="footer__newsletter-form">
+          <label for="footer__newsletter-form__title"
+            >Subscribe to our newsletter</label
+          >
+          <input
+            type="email"
+            id="footer__newsletter-form__input"
+            name="email"
+            placeholder="Enter your email"
+          />
+          <button class="footer__newsletter-form__submit btn">Subscribe</button>
+        </form>
+      </div>
+    </footer>
   </body>
 </html>
