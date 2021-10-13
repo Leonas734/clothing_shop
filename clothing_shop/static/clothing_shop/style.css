@@ -28,9 +28,9 @@ body {
 .section-main {
   height: 40vw;
   display: grid;
+  justify-items: center;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: repeat(3, 1fr) 2fr repeat(4, 1fr);
-  justify-items: center; }
+  grid-template-rows: repeat(3, 1fr) 2fr repeat(4, 1fr); }
 
 .section-for-her {
   height: 70vw;
@@ -46,6 +46,11 @@ body {
   height: 70vw;
   margin-top: -2rem; }
 
+.section-sale {
+  height: 35vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+
 .-logo {
   color: #383838;
   text-transform: lowercase;
@@ -58,7 +63,7 @@ body {
 .link {
   padding: 0 1.3rem;
   justify-self: center;
-  color: #504f4f;
+  color: #777474;
   text-decoration: none;
   font-size: 1.15rem;
   text-transform: uppercase;
@@ -88,7 +93,7 @@ body {
     font-size: 3rem;
     text-decoration: none; }
   .nav__cart {
-    fill: #504f4f;
+    fill: #777474;
     height: 2rem;
     width: 6rem;
     align-self: center;
@@ -99,13 +104,13 @@ body {
   background-image: url(./img/model-image-1.jpg);
   overflow: hidden;
   transition: background 1s;
-  color: #504f4f; }
+  color: #777474; }
   .section-main__hashtag {
     grid-column: 1/2;
     grid-row: 3/4;
     text-transform: uppercase;
     letter-spacing: 4px;
-    color: #504f4f;
+    color: #777474;
     font-size: 1.1rem;
     align-self: center; }
   .section-main__title {
@@ -178,7 +183,7 @@ body {
       text-transform: uppercase;
       padding: 1.5rem 4rem;
       background-color: white;
-      color: #504f4f;
+      color: #777474;
       font-size: 1rem;
       position: absolute;
       top: 85%;
@@ -219,7 +224,7 @@ body {
       padding-top: 0.5rem;
       text-align: center;
       grid-row: 2/3;
-      color: #504f4f;
+      color: #777474;
       font-size: 1.5rem;
       font-weight: 300; }
     .shop-outfit__product-price {
@@ -236,7 +241,7 @@ body {
       position: absolute;
       transition: transform 1s; }
     .shop-outfit__product-arrow {
-      fill: #504f4f;
+      fill: #777474;
       z-index: 1;
       position: absolute;
       height: 2rem;
@@ -305,6 +310,80 @@ body {
     grid-column: 1/2;
     grid-row: 1/2;
     font-size: 10rem;
-    color: rgba(80, 79, 79, 0.2);
+    color: rgba(119, 116, 116, 0.2);
     z-index: 1;
     letter-spacing: 2rem; }
+
+.section-sale {
+  padding: 0 2rem; }
+  .section-sale__text-container {
+    justify-self: center;
+    align-self: center;
+    grid-row: 1/2;
+    grid-column: 1/3;
+    z-index: 1;
+    text-align: center;
+    border: solid 1px #fff;
+    padding: 2rem; }
+    .section-sale__text-container-text-box {
+      background-color: #fff;
+      padding: 2rem 4rem; }
+    .section-sale__text-container-title {
+      font-size: 5rem;
+      text-transform: uppercase;
+      letter-spacing: 2rem;
+      color: #000000; }
+    .section-sale__text-container-text {
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8rem;
+      color: #777474; }
+  .section-sale__woman {
+    grid-row: 1/2;
+    grid-column: 1/2;
+    background-image: url(./img/sale-women.jpg);
+    background-size: cover;
+    background-position: 0 30%;
+    position: relative; }
+    .section-sale__woman-text {
+      writing-mode: vertical-lr;
+      margin-top: 5rem;
+      margin-left: 1.5rem;
+      letter-spacing: 2rem;
+      font-size: 1.8rem;
+      text-transform: uppercase; }
+    .section-sale__woman-text:after {
+      content: "";
+      height: 15%;
+      width: 2px;
+      position: absolute;
+      left: 2.8rem;
+      top: 0;
+      background-color: #000000; }
+  .section-sale__man {
+    grid-row: 1/2;
+    grid-column: 2/3;
+    background-image: url(./img/sale-men.jpg);
+    background-size: cover;
+    background-position: 0 20%;
+    position: relative;
+    display: flex;
+    height: 100%; }
+    .section-sale__man-text {
+      margin-left: auto;
+      writing-mode: vertical-rl;
+      display: inline-block;
+      align-self: flex-end;
+      padding-right: 1.5rem;
+      padding-bottom: 3.5rem;
+      letter-spacing: 2rem;
+      font-size: 1.8rem;
+      text-transform: uppercase; }
+    .section-sale__man-text:after {
+      content: "";
+      height: 15%;
+      width: 2px;
+      position: absolute;
+      right: 2.8rem;
+      top: 85%;
+      background-color: #000000; }

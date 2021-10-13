@@ -10,9 +10,9 @@
   height: 40vw;
 
   display: grid;
+  justify-items: center;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: repeat(3, 1fr) 2fr repeat(4, 1fr);
-  justify-items: center;
 }
 .section-for-her {
   height: 70vw;
@@ -29,4 +29,11 @@
 .section-for-him {
   height: 70vw;
   margin-top: -2rem;
+}
+
+.section-sale {
+  height: 35vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  // grid-column-gap: 1rem;
 }
