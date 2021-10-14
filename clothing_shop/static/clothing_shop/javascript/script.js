@@ -1,3 +1,4 @@
+// HELPER FUNCTIONS
 function addActiveClassNameToElement(element, className) {
   const parentEl = element.parentElement;
   const elementSiblings = [...parentEl.children];
@@ -7,6 +8,73 @@ function addActiveClassNameToElement(element, className) {
   element.classList.add(className);
 }
 
+function addImageSliderToProducts() {
+  offsetEachImage();
+  const productsDivs = document.querySelectorAll(".shop-outfit__products");
+  productsDivs.forEach((productDiv) => {
+    let currSlide = 0;
+
+    productDiv.addEventListener("click", (e) => {
+      const productImgs = [
+        ...e.target.parentElement.getElementsByTagName("img"),
+      ];
+      const totalSlides = productImgs.length;
+      const clickTargClasses = e.target.classList.value;
+
+      if (clickTargClasses.includes("arrow-right")) {
+        currSlide -= 1;
+      }
+      if (clickTargClasses.includes("arrow-left")) {
+        currSlide += 1;
+      }
+      // End of slide reached, reset currSlide
+      if (currSlide === 1) {
+        currSlide = -totalSlides + 1;
+      }
+      if (currSlide === -totalSlides) {
+        currSlide = 0;
+      }
+      slideImages(productImgs, currSlide);
+    });
+  });
+
+  function offsetEachImage(productImgs) {
+    const allImgContainers = document.querySelectorAll(
+      ".shop-outfit__product-image-container"
+    );
+    allImgContainers.forEach((imgContainer) => {
+      productImgs = [...imgContainer.getElementsByTagName("img")];
+      productImgs.forEach((img, index) => {
+        img.style.left = `${100 * index}%`;
+      });
+    });
+  }
+
+  function slideImages(images, currSlide) {
+    images.forEach((img) => {
+      img.style.transform = `translateX(${currSlide * 100}%)`;
+    });
+  }
+}
+
+function showCartOnProductHover() {
+  const shopOutfitProductImgContainers = document.querySelectorAll(
+    ".shop-outfit__product-image-container"
+  );
+
+  shopOutfitProductImgContainers.forEach((imgContainer) => {
+    imgContainer.addEventListener("mouseenter", (e) => {
+      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+        "initial";
+    });
+    imgContainer.addEventListener("mouseleave", (e) => {
+      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+        "none";
+    });
+  });
+}
+
+// MAIN FUNCTIONS
 function mainSectionClickEventHandler() {
   document
     .querySelector(".section-main__links")
@@ -36,86 +104,8 @@ function mainSectionClickEventHandler() {
     });
 }
 
-function addImageSliderToProducts(parentEl) {
-  let products = [...parentEl.children];
-  products.forEach((productDiv) => {
-    const productChildElms = [...productDiv.children];
-    productChildElms.forEach((productEl) => {
-      if (!isImgContainer(productEl)) return;
-      const imgContainerDiv = productEl;
-      const productImgs = [...imgContainerDiv.getElementsByTagName("img")];
-      if (productImgs.length === 0) return;
-      offsetEachImage(productImgs);
-      addEvListenerToImgContainer(imgContainerDiv, productImgs);
-    });
-  });
-
-  function isImgContainer(element) {
-    const result = element.classList.value.includes("image-container")
-      ? true
-      : false;
-    return result;
-  }
-  function offsetEachImage(productImgs) {
-    productImgs.forEach((img, index) => {
-      img.style.left = `${100 * index}%`;
-    });
-  }
-  function addEvListenerToImgContainer(imgContainerDiv, productImgs) {
-    let currSlide = 0;
-
-    imgContainerDiv.addEventListener("click", function (e) {
-      const eventClassNames = e.target.classList.value;
-      const totalSlides = productImgs.length;
-
-      if (eventClassNames.includes("arrow-left")) {
-        currSlide += 1;
-      } else if (eventClassNames.includes("arrow-right")) {
-        currSlide -= 1;
-      } else {
-        return; // User clicked inside img container, but not either arrow.
-      }
-      // User reached end
-      if (currSlide === 1) {
-        currSlide = -totalSlides + 1;
-      }
-      if (currSlide === -totalSlides) {
-        currSlide = 0;
-      }
-      slideImages(productImgs, currSlide);
-    });
-  }
-  function slideImages(images, currSlide) {
-    images.forEach((img) => {
-      img.style.transform = `translateX(${currSlide * 100}%)`;
-    });
-  }
-}
-
-function showCartOnProductHover() {
-  const shopOutfitProductImgContainers = document.querySelectorAll(
-    ".shop-outfit__product-image-container"
-  );
-
-  shopOutfitProductImgContainers.forEach((imgContainer) => {
-    imgContainer.addEventListener("mouseenter", (e) => {
-      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-        "initial";
-    });
-    imgContainer.addEventListener("mouseleave", (e) => {
-      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-        "none";
-    });
-  });
-}
-
 function initProductEvents() {
-  const womenProductsEl = document.querySelector(
-    ".shop-outfit__products-women"
-  );
-  const menProductsEl = document.querySelector(".shop-outfit__products-men");
-  addImageSliderToProducts(womenProductsEl);
-  addImageSliderToProducts(menProductsEl);
+  addImageSliderToProducts();
   showCartOnProductHover();
 }
 
