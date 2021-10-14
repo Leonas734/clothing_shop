@@ -3,8 +3,13 @@
   min-height: 50rem;
 }
 .header {
-  padding: 0 5rem;
   height: 5rem;
+}
+.nav {
+  padding: 0 4rem;
+  position: fixed;
+  background-color: white;
+  z-index: 999;
 }
 .section-main {
   height: 40vw;

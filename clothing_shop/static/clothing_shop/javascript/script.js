@@ -11,20 +11,28 @@ function addActiveClassNameToElement(element, className) {
 function addImageSliderToProducts() {
   offsetEachImage();
   const productsDivs = document.querySelectorAll(".shop-outfit__products");
+
   productsDivs.forEach((productDiv) => {
-    let currSlide = 0;
-
     productDiv.addEventListener("click", (e) => {
-      const productImgs = [
-        ...e.target.parentElement.getElementsByTagName("img"),
-      ];
-      const totalSlides = productImgs.length;
-      const clickTargClasses = e.target.classList.value;
+      let arrowSvgEl;
+      // Slight chance of user clicking 'use' element inside the 'svg' element
+      // If statement checks for it below and sets correct element to arrowSvgEl
+      if (e.target.tagName === "use") {
+        arrowSvgEl = e.target.parentElement;
+      } else {
+        arrowSvgEl = e.target;
+      }
 
-      if (clickTargClasses.includes("arrow-right")) {
+      const arrowClassNames = arrowSvgEl.classList.value;
+      const imgContainer = arrowSvgEl.parentElement;
+      const productImgs = [...imgContainer.getElementsByTagName("img")];
+      const totalSlides = productImgs.length;
+      let currSlide = +imgContainer.dataset.slide;
+
+      if (arrowClassNames.includes("arrow-right")) {
         currSlide -= 1;
       }
-      if (clickTargClasses.includes("arrow-left")) {
+      if (arrowClassNames.includes("arrow-left")) {
         currSlide += 1;
       }
       // End of slide reached, reset currSlide
@@ -34,6 +42,8 @@ function addImageSliderToProducts() {
       if (currSlide === -totalSlides) {
         currSlide = 0;
       }
+      imgContainer.dataset.slide = currSlide;
+
       slideImages(productImgs, currSlide);
     });
   });
