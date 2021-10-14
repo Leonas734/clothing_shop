@@ -19,6 +19,7 @@
       <a href="#" class="link section-main__sale">Sale</a>
     </div>
   </section>
+
   <section class="section-for-her">
     <div class="shop-outfit-women shop-outfit">
       <div class="shop-outfit__shop-now shop-outfit__shop-now-women">
@@ -47,7 +48,11 @@
           <div class="shop-outfit__product-price">
             £{{ product.product.price }}
           </div>
-          <div class="shop-outfit__product-image-container" data-slide="0">
+          <div
+            class="shop-outfit__product-image-container"
+            data-slide="0"
+            data-product="woman-{{forloop.counter }}"
+          >
             <svg
               class="
                 shop-outfit__product-arrow shop-outfit__product-arrow-right
@@ -60,6 +65,7 @@
             </svg>
             <svg class="shop-outfit__product-cart">
               <use
+                class="prodcut-cart"
                 xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
               ></use>
             </svg>
@@ -81,6 +87,7 @@
       </div>
     </div>
   </section>
+
   <section class="section-new-arrivals">
     <div class="section-new-arrivals-textbox">
       <h1 class="section-new-arrivals__background-text">shoppo</h1>
@@ -91,6 +98,7 @@
       >
     </div>
   </section>
+
   <section class="section-for-him">
     <div class="shop-outfit-men shop-outfit">
       <div class="shop-outfit__shop-now shop-outfit__shop-now-men">
@@ -112,14 +120,21 @@
       </div>
       <div class="shop-outfit__products shop-outfit__products-men">
         {% for product in menProducts.values %}
-        <div class="shop-outfit__product">
+        <div
+          class="shop-outfit__product"
+          data-man-product="{{ forloop.counter }}"
+        >
           <div class="shop-outfit__product-title">
             {{ product.product.title }}
           </div>
           <div class="shop-outfit__product-price">
             £{{ product.product.price }}
           </div>
-          <div class="shop-outfit__product-image-container">
+          <div
+            class="shop-outfit__product-image-container"
+            data-slide="0"
+            data-product="man-{{forloop.counter }}"
+          >
             <svg
               class="
                 shop-outfit__product-arrow shop-outfit__product-arrow-right
@@ -132,6 +147,7 @@
             </svg>
             <svg class="shop-outfit__product-cart">
               <use
+                class="product-cart"
                 xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
               ></use>
             </svg>
@@ -153,6 +169,7 @@
       </div>
     </div>
   </section>
+
   <section class="section-sale">
     <div class="section-sale__text-container">
       <div class="div section-sale__text-container-text-box">

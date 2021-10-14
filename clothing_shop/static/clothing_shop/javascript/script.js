@@ -1,4 +1,29 @@
-// HELPER FUNCTIONS
+///////////
+/// LOCAL STORAGE
+localStorage.setItem("products", JSON.stringify([]));
+
+function addProductToLocalStorage(productId) {
+  const products = JSON.parse(localStorage.getItem("products"));
+  products.push(productId);
+
+  localStorage.setItem("products", JSON.stringify(products));
+}
+
+function removeProductFromLocalStorage(productId) {
+  const products = JSON.parse(localStorage.getItem("products"));
+  const productIndex = products.indexOf(productId);
+  products.splice(productIndex, 1);
+  localStorage.setItem("products", JSON.stringify(products));
+}
+
+function isProductInCart(productId) {
+  const products = JSON.parse(localStorage.getItem("products"));
+  const productIndex = products.indexOf(productId);
+  return productIndex >= 0 ? true : false;
+}
+
+////////////
+/// HELPER FUNCTIONS
 function addActiveClassNameToElement(element, className) {
   const parentEl = element.parentElement;
   const elementSiblings = [...parentEl.children];
@@ -8,84 +33,9 @@ function addActiveClassNameToElement(element, className) {
   element.classList.add(className);
 }
 
-function addImageSliderToProducts() {
-  offsetEachImage();
-  const productsDivs = document.querySelectorAll(".shop-outfit__products");
-
-  productsDivs.forEach((productDiv) => {
-    productDiv.addEventListener("click", (e) => {
-      let arrowSvgEl;
-      // Slight chance of user clicking 'use' element inside the 'svg' element
-      // If statement checks for it below and sets correct element to arrowSvgEl
-      if (e.target.tagName === "use") {
-        arrowSvgEl = e.target.parentElement;
-      } else {
-        arrowSvgEl = e.target;
-      }
-
-      const arrowClassNames = arrowSvgEl.classList.value;
-      const imgContainer = arrowSvgEl.parentElement;
-      const productImgs = [...imgContainer.getElementsByTagName("img")];
-      const totalSlides = productImgs.length;
-      let currSlide = +imgContainer.dataset.slide;
-
-      if (arrowClassNames.includes("arrow-right")) {
-        currSlide -= 1;
-      }
-      if (arrowClassNames.includes("arrow-left")) {
-        currSlide += 1;
-      }
-      // End of slide reached, reset currSlide
-      if (currSlide === 1) {
-        currSlide = -totalSlides + 1;
-      }
-      if (currSlide === -totalSlides) {
-        currSlide = 0;
-      }
-      imgContainer.dataset.slide = currSlide;
-
-      slideImages(productImgs, currSlide);
-    });
-  });
-
-  function offsetEachImage(productImgs) {
-    const allImgContainers = document.querySelectorAll(
-      ".shop-outfit__product-image-container"
-    );
-    allImgContainers.forEach((imgContainer) => {
-      productImgs = [...imgContainer.getElementsByTagName("img")];
-      productImgs.forEach((img, index) => {
-        img.style.left = `${100 * index}%`;
-      });
-    });
-  }
-
-  function slideImages(images, currSlide) {
-    images.forEach((img) => {
-      img.style.transform = `translateX(${currSlide * 100}%)`;
-    });
-  }
-}
-
-function showCartOnProductHover() {
-  const shopOutfitProductImgContainers = document.querySelectorAll(
-    ".shop-outfit__product-image-container"
-  );
-
-  shopOutfitProductImgContainers.forEach((imgContainer) => {
-    imgContainer.addEventListener("mouseenter", (e) => {
-      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-        "initial";
-    });
-    imgContainer.addEventListener("mouseleave", (e) => {
-      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-        "none";
-    });
-  });
-}
-
-// MAIN FUNCTIONS
-function mainSectionClickEventHandler() {
+///////////
+/// MAIN FUNCTIONS
+function mainSectionLinkClickEventHandler() {
   document
     .querySelector(".section-main__links")
     .addEventListener("click", (e) => {
@@ -115,8 +65,94 @@ function mainSectionClickEventHandler() {
 }
 
 function initProductEvents() {
-  addImageSliderToProducts();
+  offsetEachImage();
   showCartOnProductHover();
+  const productsDivs = document.querySelectorAll(".shop-outfit__products");
+
+  productsDivs.forEach((productsDiv) => {
+    productsDiv.addEventListener("click", (e) => {
+      // User has a small chance of clicking 'use' element inside the 'svg' element
+      const eventDiv =
+        e.target.tagName === "use" ? e.target.parentElement : e.target;
+
+      if (eventDiv.classList.value.includes("arrow")) {
+        slideImages(eventDiv);
+      } else if (eventDiv.classList.value.includes("product-cart")) {
+        updateProductCart(eventDiv);
+      } else return;
+    });
+  });
+
+  function offsetEachImage(productImgs) {
+    const allImgContainers = document.querySelectorAll(
+      ".shop-outfit__product-image-container"
+    );
+    allImgContainers.forEach((imgContainer) => {
+      productImgs = [...imgContainer.getElementsByTagName("img")];
+      productImgs.forEach((img, index) => {
+        img.style.left = `${100 * index}%`;
+      });
+    });
+  }
+
+  function slideImages(arrowEl) {
+    const arrowClassNames = arrowEl.classList.value;
+    const imgContainer = arrowEl.parentElement;
+    const productImgs = [...imgContainer.getElementsByTagName("img")];
+    const totalSlides = productImgs.length;
+    let currSlide = +imgContainer.dataset.slide;
+
+    if (arrowClassNames.includes("arrow-right")) {
+      currSlide -= 1;
+    }
+    if (arrowClassNames.includes("arrow-left")) {
+      currSlide += 1;
+    }
+    // End of slide reached, reset currSlide
+    if (currSlide === 1) {
+      currSlide = -totalSlides + 1;
+    }
+    if (currSlide === -totalSlides) {
+      currSlide = 0;
+    }
+    imgContainer.dataset.slide = currSlide;
+
+    productImgs.forEach((img) => {
+      img.style.transform = `translateX(${currSlide * 100}%)`;
+    });
+  }
+
+  function showCartOnProductHover() {
+    /* Have to use mouseeenter / mouseleave to ensure cart doesn't get
+    hidden when user hovers over the cart element or arrow elements */
+    const shopOutfitProductImgContainers = document.querySelectorAll(
+      ".shop-outfit__product-image-container"
+    );
+
+    shopOutfitProductImgContainers.forEach((imgContainer) => {
+      imgContainer.addEventListener("mouseenter", (e) => {
+        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+          "initial";
+      });
+      imgContainer.addEventListener("mouseleave", (e) => {
+        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+          "none";
+      });
+    });
+  }
+
+  function updateProductCart(cartDiv) {
+    const productId = cartDiv.parentElement.dataset.product;
+    if (isProductInCart(productId)) {
+      cartDiv.style.fill = "#777474";
+      removeProductFromLocalStorage(productId);
+    } else {
+      cartDiv.style.fill = "#fe7d97";
+      addProductToLocalStorage(productId);
+    }
+
+    loadProductsFromLocalStorage();
+  }
 }
 
 function addSaleSectionHoverEffect() {
@@ -152,10 +188,22 @@ function addSaleSectionHoverEffect() {
   });
 }
 
+function loadProductsFromLocalStorage() {
+  const products = JSON.parse(localStorage.getItem("products"));
+  const cartTotal = document.querySelector(".nav__cart-total");
+  if (products.length < 1) {
+    cartTotal.innerHTML = "";
+    return;
+  }
+
+  cartTotal.innerHTML = products.length;
+}
+
 function init() {
-  mainSectionClickEventHandler();
+  mainSectionLinkClickEventHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
+  loadProductsFromLocalStorage();
 }
 
 init();

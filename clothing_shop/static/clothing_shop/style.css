@@ -126,6 +126,14 @@ body {
     align-self: center;
     margin-top: 5px;
     margin-left: auto; }
+  .nav__cart-total {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    right: 8.5rem;
+    top: 1.94rem; }
 
 .section-main {
   background-image: url(./img/model-image-1.jpg);

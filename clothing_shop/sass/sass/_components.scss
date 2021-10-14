@@ -62,7 +62,6 @@
   display: flex;
   align-items: baseline;
   width: 100%;
-
   &__logo {
     padding-right: 3rem;
   }
@@ -74,6 +73,16 @@
     align-self: center;
     margin-top: 5px;
     margin-left: auto;
+  }
+
+  &__cart-total {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    display: inline-block;
+    position: absolute;
+    margin: auto;
+    right: 8.5rem;
+    top: 1.94rem;
   }
 }
 
