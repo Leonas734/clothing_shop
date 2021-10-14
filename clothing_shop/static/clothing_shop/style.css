@@ -196,8 +196,11 @@ body {
       font-size: 1rem;
       position: absolute;
       top: 85%;
-      left: 55%;
-      transform: translate(-50%, -50%); }
+      left: 50%;
+      transform: translate(-50%, -50%);
+      transition: 0.5s all; }
+      .shop-outfit__shop-now__btn:hover {
+        transform: translate(-50%, -50%) scale(1.1); }
   .shop-outfit__categories {
     justify-self: start;
     align-self: end; }
@@ -249,6 +252,18 @@ body {
       object-fit: contain;
       position: absolute;
       transition: transform 1s; }
+    .shop-outfit__product-cart {
+      height: 2.5rem;
+      width: 2.5rem;
+      z-index: 1;
+      position: absolute;
+      margin-left: auto;
+      right: 1rem;
+      top: 2rem;
+      fill: #777474;
+      display: none; }
+      .shop-outfit__product-cart--active {
+        fill: #fe7d97; }
     .shop-outfit__product-arrow {
       fill: #777474;
       z-index: 1;

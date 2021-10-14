@@ -176,8 +176,13 @@
       font-size: 1rem;
       position: absolute;
       top: 85%;
-      left: 55%;
+      left: 50%;
       transform: translate(-50%, -50%);
+      transition: 0.5s all;
+
+      &:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+      }
     }
   }
   // Nav bar top of grid
@@ -247,6 +252,22 @@
       object-fit: contain;
       position: absolute;
       transition: transform 1s;
+    }
+
+    &-cart {
+      height: 2.5rem;
+      width: 2.5rem;
+      z-index: 1;
+      position: absolute;
+      margin-left: auto;
+      right: 1rem;
+      top: 2rem;
+      fill: $color-primary-light;
+      display: none;
+
+      &--active {
+        fill: $color-secondary;
+      }
     }
 
     &-arrow {
