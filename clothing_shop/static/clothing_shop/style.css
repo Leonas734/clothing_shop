@@ -261,7 +261,8 @@ body {
       right: 1rem;
       top: 2rem;
       fill: #777474;
-      display: none; }
+      display: none;
+      transition: 0.5s; }
       .shop-outfit__product-cart--active {
         fill: #fe7d97; }
     .shop-outfit__product-arrow {

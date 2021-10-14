@@ -130,6 +130,11 @@
                 xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-chevron-with-circle-right "
               ></use>
             </svg>
+            <svg class="shop-outfit__product-cart">
+              <use
+                xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
+              ></use>
+            </svg>
             {% for img in product.productImgs %}
             <!-- prettier-ignore -->
             <img src={{ img.images.url}} alt="Product image" class="shop-outfit__product-image shop-outfit__product-image-offset-{{forloop.counter}}">

@@ -92,6 +92,33 @@ function addImageSliderToProducts(parentEl) {
   }
 }
 
+function showCartOnProductHover() {
+  const shopOutfitProductImgContainers = document.querySelectorAll(
+    ".shop-outfit__product-image-container"
+  );
+
+  shopOutfitProductImgContainers.forEach((imgContainer) => {
+    imgContainer.addEventListener("mouseenter", (e) => {
+      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+        "initial";
+    });
+    imgContainer.addEventListener("mouseleave", (e) => {
+      imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+        "none";
+    });
+  });
+}
+
+function initProductEvents() {
+  const womenProductsEl = document.querySelector(
+    ".shop-outfit__products-women"
+  );
+  const menProductsEl = document.querySelector(".shop-outfit__products-men");
+  addImageSliderToProducts(womenProductsEl);
+  addImageSliderToProducts(menProductsEl);
+  showCartOnProductHover();
+}
+
 function addSaleSectionHoverEffect() {
   const saleDiv = document.querySelector(".section-sale");
   const manSaleSection = document.querySelector(".section-sale__man");
@@ -127,13 +154,7 @@ function addSaleSectionHoverEffect() {
 
 function init() {
   mainSectionClickEventHandler();
-  const womenProductsEl = document.querySelector(
-    ".shop-outfit__products-women"
-  );
-  addImageSliderToProducts(womenProductsEl);
-  const menProductsEl = document.querySelector(".shop-outfit__products-men");
-  addImageSliderToProducts(menProductsEl);
-
+  initProductEvents();
   addSaleSectionHoverEffect();
 }
 

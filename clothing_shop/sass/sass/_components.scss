@@ -264,6 +264,7 @@
       top: 2rem;
       fill: $color-primary-light;
       display: none;
+      transition: 0.5s;
 
       &--active {
         fill: $color-secondary;
