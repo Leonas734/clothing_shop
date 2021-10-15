@@ -67,22 +67,37 @@
   }
 
   &__cart {
-    fill: $color-primary-light;
-    height: 2rem;
-    width: 6rem;
     align-self: center;
     margin-top: 5px;
     margin-left: auto;
-  }
+    display: flex;
+    margin-top: 1rem;
 
-  &__cart-total {
-    margin-right: 1rem;
-    font-size: 1.2rem;
-    display: inline-block;
-    position: absolute;
-    margin: auto;
-    right: 8.5rem;
-    top: 1.94rem;
+    &-icon {
+      fill: $color-primary-light;
+      height: 2rem;
+      width: 6rem;
+    }
+    &-total {
+      margin-right: 1rem;
+      font-size: 1.2rem;
+      display: inline-block;
+      position: absolute;
+      margin: auto;
+      right: 8.5rem;
+      top: 2.2rem;
+    }
+
+    &-products {
+      position: absolute;
+      margin-left: auto;
+      right: 1rem;
+      top: 4rem;
+      height: 25vh;
+      width: 15vw;
+      background-color: orangered;
+      display: none;
+    }
   }
 }
 
@@ -545,7 +560,7 @@
       }
 
       > input {
-        width: 80%;
+        width: 60%;
         border: none;
         height: 2.5rem;
         padding: 2rem;

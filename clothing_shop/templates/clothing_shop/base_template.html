@@ -40,12 +40,15 @@
         <a href="#" class="link">Blog</a>
         <a href="#" class="link">Pages</a>
         <a href="#" class="link">Contact us</a>
-        <div class="nav__cart-total"></div>
-        <svg class="link nav__cart">
-          <use
-            xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
-          ></use>
-        </svg>
+        <div class="nav__cart">
+          <div class="nav__cart-total"></div>
+          <svg class="link nav__cart-icon">
+            <use
+              xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
+            ></use>
+          </svg>
+          <div class="nav__cart-products"></div>
+        </div>
       </nav>
     </header>
 

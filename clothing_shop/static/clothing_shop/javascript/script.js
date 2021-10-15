@@ -199,11 +199,28 @@ function loadProductsFromLocalStorage() {
   cartTotal.innerHTML = products.length;
 }
 
+function fetchProductsFromBackend() {}
+
+function showCartOnIconHover() {
+  const cartDiv = document.querySelector(".nav__cart");
+  const productsDiv = document.querySelector(".nav__cart-products");
+  console.log(productsDiv);
+  console.log(cartDiv);
+  cartDiv.addEventListener("mouseenter", (e) => {
+    console.log(e.target);
+    productsDiv.style.display = "block";
+  });
+  cartDiv.addEventListener("mouseleave", (e) => {
+    productsDiv.style.display = "none";
+  });
+}
+
 function init() {
   mainSectionLinkClickEventHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
   loadProductsFromLocalStorage();
+  showCartOnIconHover();
 }
 
 init();
