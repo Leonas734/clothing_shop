@@ -138,14 +138,52 @@ body {
       right: 8.5rem;
       top: 2.2rem; }
     .nav__cart-products {
+      display: grid;
+      overflow-y: scroll;
       position: absolute;
       margin-left: auto;
       right: 1rem;
       top: 4rem;
-      height: 25vh;
+      min-height: 15vh;
+      max-height: 25vh;
       width: 15vw;
-      background-color: orangered;
+      background-color: rgba(255, 255, 255, 0.8);
       display: none; }
+    .nav__cart-product {
+      margin-top: 2rem;
+      height: 8rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 50% 1fr;
+      grid-template-rows: 1fr; }
+      .nav__cart-product-image {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        width: 100%;
+        object-fit: contain;
+        height: 8rem; }
+      .nav__cart-product-title {
+        color: #777474;
+        font-size: 2rem;
+        grid-column: 2/3;
+        grid-row: 1/2; }
+      .nav__cart-product-price {
+        font-size: 1.5rem;
+        margin-top: 4rem;
+        grid-column: 2/3;
+        grid-row: 1/2; }
+    .nav__cart-checkout-button {
+      display: none;
+      width: 100%;
+      justify-self: center;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+    .nav__cart-checkout-message {
+      justify-self: center;
+      align-self: center;
+      font-size: 1.6rem;
+      color: #777474; }
 
 .section-main {
   background-image: url(./img/model-image-1.jpg);

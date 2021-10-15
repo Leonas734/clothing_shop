@@ -89,14 +89,60 @@
     }
 
     &-products {
+      display: grid;
+      overflow-y: scroll;
       position: absolute;
       margin-left: auto;
       right: 1rem;
       top: 4rem;
-      height: 25vh;
       width: 15vw;
-      background-color: orangered;
+      background-color: rgba($color-white, 0.8);
       display: none;
+    }
+    &-product {
+      margin-top: 2rem;
+      height: 8rem;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 50% 1fr;
+      grid-template-rows: 1fr;
+
+      &-image {
+        grid-column: 1/2;
+        grid-row: 1/2;
+        width: 100%;
+        object-fit: contain;
+        height: 8rem;
+      }
+
+      &-title {
+        color: $color-primary-light;
+        font-size: 2rem;
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+
+      &-price {
+        font-size: 1.5rem;
+        margin-top: 4rem;
+        grid-column: 2/3;
+        grid-row: 1/2;
+      }
+    }
+    &-checkout-button {
+      display: none;
+      width: 100%;
+      justify-self: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &-checkout-message {
+      justify-self: center;
+      align-self: center;
+      font-size: 1.6rem;
+      color: $color-primary-light;
     }
   }
 }

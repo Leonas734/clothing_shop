@@ -19,6 +19,9 @@
       NG_STATIC_FILES = {
         STATIC_URL: "{% static 'clothing_shop/' %}",
       };
+      NG_MEDIA_FILES = {
+        MEDIA_URL: "{% get_media_prefix %}",
+      };
     </script>
 
     <link
@@ -47,7 +50,10 @@
               xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
             ></use>
           </svg>
-          <div class="nav__cart-products"></div>
+          <div class="nav__cart-products">
+            <div class="nav__cart-checkout-message">No products in cart.</div>
+            <div class="nav__cart-checkout-button btn">Check out now</div>
+          </div>
         </div>
       </nav>
     </header>
