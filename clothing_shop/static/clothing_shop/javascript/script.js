@@ -1,6 +1,58 @@
-///////////
-/// LOCAL STORAGE
-localStorage.setItem("products", JSON.stringify([]));
+////////////
+/// HELPER FUNCTIONS
+function addActiveClassNameToElement(element, className) {
+  const parentEl = element.parentElement;
+  const elementSiblings = [...parentEl.children];
+  elementSiblings.forEach((el) => {
+    el.classList.remove(className);
+  });
+  element.classList.add(className);
+}
+
+async function loadProductToCart(productId) {
+  const response = await fetch(
+    `http://127.0.0.1:8000/get_product/${productId}`
+  );
+  result = await response.json();
+  // console.log(result);
+  const product = result.product;
+  const images = result.images;
+
+  const newDiv = document.createElement("div");
+  newDiv.classList.add("nav__cart-product");
+  newDiv.setAttribute("data-product", `${product.id}`);
+  newDiv.innerHTML = `
+    <img class="nav__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
+    <div class="nav__cart-product-title">${product.title}</div>
+    <div class="nav__cart-product-price">£${product.price}</div>
+    `;
+  const cartProductDiv = document.querySelector(".nav__cart-products");
+  cartProductDiv.prepend(newDiv);
+}
+
+function updateCartTotalProducts() {
+  const localStorageProducts = JSON.parse(localStorage.getItem("products"));
+  const cartTotalEl = document.querySelector(".nav__cart-total");
+  const checkoutButton = document.querySelector(".nav__cart-checkout-button");
+  const checkoutMessage = document.querySelector(".nav__cart-checkout-message");
+  if (localStorageProducts.length < 1) {
+    cartTotalEl.innerHTML = "";
+    checkoutButton.style.display = "none";
+    checkoutMessage.style.display = "block";
+    return;
+  }
+  checkoutMessage.style.display = "none";
+  cartTotalEl.innerHTML = localStorageProducts.length;
+  checkoutButton.style.display = "flex";
+}
+
+function changeCartLogoColour(cartEl, removeItem = false) {
+  if (removeItem) {
+    cartEl.style.fill = "#777474";
+  } else {
+    cartEl.style.fill = "#fe7d97";
+  }
+}
 
 function addProductToLocalStorage(productId) {
   const products = JSON.parse(localStorage.getItem("products"));
@@ -16,21 +68,10 @@ function removeProductFromLocalStorage(productId) {
   localStorage.setItem("products", JSON.stringify(products));
 }
 
-function isProductInCart(productId) {
+function productInCart(productId) {
   const products = JSON.parse(localStorage.getItem("products"));
   const productIndex = products.indexOf(productId);
   return productIndex >= 0 ? true : false;
-}
-
-////////////
-/// HELPER FUNCTIONS
-function addActiveClassNameToElement(element, className) {
-  const parentEl = element.parentElement;
-  const elementSiblings = [...parentEl.children];
-  elementSiblings.forEach((el) => {
-    el.classList.remove(className);
-  });
-  element.classList.add(className);
 }
 
 ///////////
@@ -53,7 +94,7 @@ function mainSectionLinkClickEventHandler() {
         newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-2.jpg`;
         newTitle = "Recycled<br>Sweaters";
       } else if (targetClassNames.includes("sale")) {
-        newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/sale-image-1.jpg`;
+        newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/sale.jpg`;
         newTitle = "Autumn<br>Sale";
       } else {
         return;
@@ -67,21 +108,7 @@ function mainSectionLinkClickEventHandler() {
 function initProductEvents() {
   offsetEachImage();
   showCartOnProductHover();
-  const productsDivs = document.querySelectorAll(".shop-outfit__products");
-
-  productsDivs.forEach((productsDiv) => {
-    productsDiv.addEventListener("click", (e) => {
-      // User has a small chance of clicking 'use' element inside the 'svg' element
-      const eventDiv =
-        e.target.tagName === "use" ? e.target.parentElement : e.target;
-
-      if (eventDiv.classList.value.includes("arrow")) {
-        slideImages(eventDiv);
-      } else if (eventDiv.classList.value.includes("product-cart")) {
-        updateProductCart(eventDiv);
-      } else return;
-    });
-  });
+  addEvListenerToProducts();
 
   function offsetEachImage(productImgs) {
     const allImgContainers = document.querySelectorAll(
@@ -95,6 +122,44 @@ function initProductEvents() {
     });
   }
 
+  function showCartOnProductHover() {
+    /* Have to use mouseeenter / mouseleave to ensure cart doesn't get
+    hidden when user hovers over the cart element or arrow elements */
+    const shopOutfitProductImgContainers = document.querySelectorAll(
+      ".shop-outfit__product-image-container"
+    );
+
+    shopOutfitProductImgContainers.forEach((imgContainer) => {
+      imgContainer.addEventListener("mouseenter", (e) => {
+        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+          "initial";
+      });
+      imgContainer.addEventListener("mouseleave", (e) => {
+        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
+          "none";
+      });
+    });
+  }
+
+  function addEvListenerToProducts() {
+    const productsDivs = document.querySelectorAll(".shop-outfit__products");
+    productsDivs.forEach((productsDiv) => {
+      productsDiv.addEventListener("click", (e) => {
+        // User has a small chance of clicking 'use' element inside the 'svg' element
+        const eventDiv =
+          e.target.tagName === "use" ? e.target.parentElement : e.target;
+
+        if (userClickedProductArrow(eventDiv)) {
+          slideImages(eventDiv);
+        } else if (userClickedAddToCart(eventDiv)) {
+          updateProductCart(eventDiv);
+        } else return;
+      });
+    });
+  }
+
+  ////
+  // initProductEvents() HELPER FUNCTIONS
   function slideImages(arrowEl) {
     const arrowClassNames = arrowEl.classList.value;
     const imgContainer = arrowEl.parentElement;
@@ -122,38 +187,38 @@ function initProductEvents() {
     });
   }
 
-  function showCartOnProductHover() {
-    /* Have to use mouseeenter / mouseleave to ensure cart doesn't get
-    hidden when user hovers over the cart element or arrow elements */
-    const shopOutfitProductImgContainers = document.querySelectorAll(
-      ".shop-outfit__product-image-container"
-    );
+  async function updateProductCart(cartEl) {
+    const productId = cartEl.parentElement.dataset.product;
+    if (productInCart(productId)) {
+      changeCartLogoColour(cartEl, (removeItem = true));
+      removeProductFromLocalStorage(productId);
+      removeProductFromCart(productId);
+    } else {
+      changeCartLogoColour(cartEl, (removeItem = false));
+      addProductToLocalStorage(productId);
+      loadProductToCart(productId);
+    }
 
-    shopOutfitProductImgContainers.forEach((imgContainer) => {
-      imgContainer.addEventListener("mouseenter", (e) => {
-        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-          "initial";
-      });
-      imgContainer.addEventListener("mouseleave", (e) => {
-        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-          "none";
-      });
+    updateCartTotalProducts();
+  }
+
+  function removeProductFromCart(productId) {
+    const productsDiv = [
+      ...document.querySelector(".nav__cart-products").children,
+    ];
+    productsDiv.forEach((product) => {
+      if (product.dataset.product === productId) {
+        product.remove();
+      }
     });
   }
 
-  async function updateProductCart(cartDiv) {
-    const productId = cartDiv.parentElement.dataset.product;
-    if (isProductInCart(productId)) {
-      cartDiv.style.fill = "#777474";
-      removeItemFromCart(productId);
-      removeProductFromLocalStorage(productId);
-    } else {
-      cartDiv.style.fill = "#fe7d97";
-      addProductToLocalStorage(productId);
-      loadItemToCart(productId);
-    }
+  function userClickedProductArrow(element) {
+    return element.classList.value.includes("arrow") ? true : false;
+  }
 
-    cartUpdateFrontend();
+  function userClickedAddToCart(element) {
+    return element.classList.value.includes("product-cart") ? true : false;
   }
 }
 
@@ -190,52 +255,17 @@ function addSaleSectionHoverEffect() {
   });
 }
 
-async function loadItemToCart(productId) {
-  const response = await fetch(
-    `http://127.0.0.1:8000/get_product/${productId}`
-  );
-  result = await response.json();
-  // console.log(result);
-  const product = result.product;
-  const images = result.images;
-
-  const newDiv = document.createElement("div");
-  newDiv.classList.add("nav__cart-product");
-  newDiv.setAttribute("data-product", `${product.id}`);
-  newDiv.innerHTML = `
-    <img class="nav__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
-    <div class="nav__cart-product-title">${product.title}</div>
-    <div class="nav__cart-product-price">£${product.price}</div>
-    `;
-  const cartProductDiv = document.querySelector(".nav__cart-products");
-  cartProductDiv.prepend(newDiv);
-}
-
-function removeItemFromCart(productId) {
-  const productsDiv = [
-    ...document.querySelector(".nav__cart-products").children,
-  ];
-  productsDiv.forEach((product) => {
-    if (product.dataset.product === productId) {
-      product.remove();
-    }
-  });
-}
-
-function cartUpdateFrontend() {
+function loadCartProductsFromStorage() {
   const products = JSON.parse(localStorage.getItem("products"));
-  const cartTotal = document.querySelector(".nav__cart-total");
-  const checkoutButton = document.querySelector(".nav__cart-checkout-button");
-  const checkoutMessage = document.querySelector(".nav__cart-checkout-message");
-  if (products.length < 1) {
-    cartTotal.innerHTML = "";
-    checkoutButton.style.display = "none";
-    checkoutMessage.style.display = "block";
-    return;
-  }
-  checkoutMessage.style.display = "none";
-  cartTotal.innerHTML = products.length;
-  checkoutButton.style.display = "flex";
+  products.forEach((productId) => {
+    cartEl = document
+      .querySelector(`[data-product="${productId}"]`)
+      .querySelector(".shop-outfit__product-cart");
+
+    changeCartLogoColour(cartEl, (removeItem = false));
+    loadProductToCart(productId);
+  });
+  updateCartTotalProducts();
 }
 
 function showCartProductsOnIconHover() {
@@ -253,7 +283,7 @@ function init() {
   mainSectionLinkClickEventHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
-  cartUpdateFrontend();
+  loadCartProductsFromStorage();
   showCartProductsOnIconHover();
 }
 

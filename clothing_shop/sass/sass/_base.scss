@@ -5,6 +5,12 @@ $color-primary-dark: #000000;
 $color-secondary: #fe7d97;
 $color-white: #fff;
 
+// Breakpoints
+$bp-mega-large: 81.25em;
+$bp-largest: 68.75em;
+$bp-large: 62.5em;
+$bp-medium: 55em;
+
 $font-primary: "Montserrat", sans-serif;
 
 * {
@@ -21,11 +27,29 @@ $font-primary: "Montserrat", sans-serif;
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
+  @media only screen and (max-width: $bp-large) {
+    font-size: 55%;
+  }
 }
 
 body {
   font-family: $font-primary;
   font-weight: 400;
   line-height: 1.6;
-  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  grid-template-rows:
+    5rem 80vh min-content minmax(min-content, 30vw) min-content minmax(
+      min-content,
+      30vw
+    )
+    min-content;
+  grid-template-columns:
+    [full-start] minmax(2rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end] minmax(2rem, 1fr) [full-end];
 }

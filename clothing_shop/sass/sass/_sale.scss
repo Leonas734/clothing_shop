@@ -1,0 +1,90 @@
+.sale {
+  margin-top: 4rem;
+  grid-row: 6/7;
+  grid-column: full-start / full-end;
+
+  display: grid;
+  grid-template-columns: repeat(
+    8,
+    [col-start] minmax(min-content, 1fr) [col-end]
+  );
+  grid-template-rows: repeat(4, 1fr);
+
+  &__woman {
+    margin: 2rem;
+    grid-column: col-start 1 / col-end 4;
+    grid-row: 1/-1;
+    background-image: url(./img/sale-women.jpg);
+    background-size: cover;
+    background-position: 0 50%;
+    position: relative;
+
+    &-text {
+      @include sale-text;
+      left: 1.5rem;
+      top: 5rem;
+
+      &:after {
+        height: 23%;
+        width: 2px;
+        left: 1.4rem;
+        bottom: 105%;
+      }
+    }
+  }
+
+  &__man {
+    position: relative;
+    margin: 2rem;
+    grid-column: col-start 5 / col-end 8;
+    grid-row: 1/-1;
+    background-image: url(./img/sale-men.jpg);
+    background-size: cover;
+    background-position: 0 30%;
+    display: flex;
+
+    &-text {
+      @include sale-text;
+      display: inline-block;
+      align-self: flex-end;
+      right: 1.5rem;
+      bottom: 3.5rem;
+
+      &:after {
+        height: 33%;
+        width: 2px;
+        right: 1.3rem;
+        top: 100%;
+      }
+    }
+  }
+
+  &__text-container {
+    grid-column: col-start 4 / col-end 5;
+    grid-row: 2/4;
+    z-index: 1;
+    border: solid 1px $color-white;
+    padding: 2rem;
+  }
+
+  &__text-box {
+    background-color: white;
+    height: 100%;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+      font-size: 5rem;
+      letter-spacing: 1rem;
+      text-transform: uppercase;
+    }
+    &__text {
+      font-size: 2rem;
+      letter-spacing: 1rem;
+      color: $color-primary-light;
+    }
+  }
+}

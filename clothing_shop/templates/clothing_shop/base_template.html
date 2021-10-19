@@ -9,12 +9,13 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
+    <!--
     <script
       type="text/javascript"
       defer
       src="{% static 'clothing_shop/javascript/script.js' %}"
     ></script>
-
+    -->
     <script type="text/javascript">
       NG_STATIC_FILES = {
         STATIC_URL: "{% static 'clothing_shop/' %}",
@@ -32,31 +33,29 @@
 
     <title>{% block title %}{% endblock %}</title>
   </head>
-  <body>
-    <header class="header">
-      <nav class="nav">
-        <a href="#" class="nav__logo logo"
-          >Shoppo<span class="logo-dot">.</span></a
-        >
-        <a href="#" class="link link--active link">Home</a>
-        <a href="#" class="link">Shop</a>
-        <a href="#" class="link">Blog</a>
-        <a href="#" class="link">Pages</a>
-        <a href="#" class="link">Contact us</a>
-        <div class="nav__cart">
-          <div class="nav__cart-total"></div>
-          <svg class="link nav__cart-icon">
-            <use
-              xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
-            ></use>
-          </svg>
-          <div class="nav__cart-products">
-            <div class="nav__cart-checkout-message">No products in cart.</div>
-            <div class="nav__cart-checkout-button btn">Check out now</div>
-          </div>
-        </div>
-      </nav>
-    </header>
+  <body class="container">
+    <nav class="nav-bar">
+      <a href="#" class="nav-bar__logo logo"
+        >Shoppo<span class="logo-dot">.</span></a
+      >
+      <div class="nav-bar__links">
+        <a href="#" class="nav-bar__link link-one link-one--active">Home</a>
+        <a href="#" class="nav-bar__link link-one">Shop</a>
+        <a href="#" class="nav-bar__link link-one">Blog</a>
+        <a href="#" class="nav-bar__link link-one">Pages</a>
+        <a href="#" class="nav-bar__link link-one">Contact us</a>
+      </div>
+      <div class="nav-bar__cart-total">1</div>
+      <svg class="nav-bar__cart-icon cart">
+        <use
+          xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
+        ></use>
+      </svg>
+      <div class="nav-bar__cart-products">
+        <div class="nav-bar__cart-checkout-message">No products in cart.</div>
+        <div class="nav-bar__cart-checkout-button btn">Check out now</div>
+      </div>
+    </nav>
 
     {% block body %}{% endblock %}
     <footer class="footer">
@@ -71,20 +70,25 @@
         </p>
       </div>
       <div class="footer__about">
-        <div class="footer__about-title">About Shoppo</div>
-        <a href="#" class="footer__about-link link">About us</a>
-        <a href="#" class="footer__about-link link">Stores</a>
-        <a href="#" class="footer__about-link link">Work with us</a>
-        <a href="#" class="footer__about-link link">Our policies</a>
-        <a href="#" class="footer__about-link link">Loyalty card</a>
+        <div class="footer__about-title">About</div>
+        <a href="#" class="footer__about-link-one link-one">About us</a>
+        <a href="#" class="footer__about-link-one link-one">Stores</a>
+        <a href="#" class="footer__about-link-one link-one">Work with us</a>
+        <a href="#" class="footer__about-link-one link-one">Our policies</a>
+        <a href="#" class="footer__about-link-one link-one">Loyalty card</a>
       </div>
+
       <div class="footer__shopguide">
         <div class="footer__shopguide-title">Shop guide</div>
-        <a href="#" class="footer__shopguide-link link">Payment</a>
-        <a href="#" class="footer__shopguide-link link">Returns</a>
-        <a href="#" class="footer__shopguide-link link">Gift card</a>
-        <a href="#" class="footer__shopguide-link link">Guest purchase</a>
-        <a href="#" class="footer__shopguide-link link">Terms & conditions</a>
+        <a href="#" class="footer__shopguide-link-one link-one">Payment</a>
+        <a href="#" class="footer__shopguide-link-one link-one">Returns</a>
+        <a href="#" class="footer__shopguide-link-one link-one">Gift card</a>
+        <a href="#" class="footer__shopguide-link-one link-one"
+          >Guest purchase</a
+        >
+        <a href="#" class="footer__shopguide-link-one link-one"
+          >Terms & conditions</a
+        >
       </div>
       <div class="footer__newsletter">
         <div class="footer__newsletter-title">Newsletter</div>
@@ -98,7 +102,9 @@
             name="email"
             placeholder="Enter your email"
           />
-          <button class="footer__newsletter-form__submit btn">Subscribe</button>
+          <button class="footer__newsletter-form__submit btn-small">
+            Subscribe
+          </button>
         </form>
       </div>
     </footer>

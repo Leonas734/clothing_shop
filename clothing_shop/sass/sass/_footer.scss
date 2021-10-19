@@ -1,0 +1,62 @@
+.footer {
+  background-color: $color-primary-very-light;
+  grid-row: 7/8;
+  grid-column: full-start / full-end;
+
+  display: grid;
+  grid-column-gap: 1rem;
+  grid-template-columns: repeat(
+    auto-fit,
+    [col-start] minmax(10rem, 1fr) [col-end]
+  );
+
+  align-content: center;
+  padding: 2rem;
+
+  &__copyright {
+    transform: translateY(-0.5rem);
+  }
+
+  &__about {
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+
+    &-title {
+      color: $color-primary-dark;
+      font-size: 2rem;
+    }
+  }
+
+  &__shopguide {
+    &-title {
+      color: $color-primary-dark;
+      font-size: 2rem;
+    }
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  &__newsletter {
+    &-title {
+      color: $color-primary-dark;
+      font-size: 2rem;
+    }
+    &-form {
+      > label {
+        display: block;
+        font-size: 1.5rem;
+        color: $color-primary-light;
+      }
+      > input {
+        margin-top: 1rem;
+        border: none;
+        height: 3.5rem;
+        width: 15rem;
+      }
+      > button {
+      }
+    }
+  }
+}

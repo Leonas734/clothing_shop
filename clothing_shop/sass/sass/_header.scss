@@ -1,0 +1,39 @@
+.header {
+  grid-row: 2/3;
+  grid-column: full-start/full-end;
+  background-image: url(./img/model-image-1.jpg);
+  background-size: cover;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: minmax(min-content, 1fr) 1fr;
+
+  // USE THIS FOR MOBILE SIZE TO CENTER IMG
+  // background-position: center;
+
+  &__text-container {
+    align-self: center;
+  }
+
+  &__links {
+    position: absolute;
+    margin: auto;
+    left: 2rem;
+    bottom: 2rem;
+    color: $color-primary-light;
+    font-size: 1.3rem;
+  }
+
+  &__link {
+    display: inline-block;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+    letter-spacing: 0.5rem;
+  }
+
+  &__text {
+    font-size: 4rem;
+  }
+}

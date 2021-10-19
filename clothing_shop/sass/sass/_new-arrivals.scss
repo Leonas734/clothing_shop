@@ -1,0 +1,39 @@
+.new-arrivals {
+  background-image: url(./img/new-arrivals-img-3.jpg);
+  background-size: cover;
+  background-position: 0 60%;
+  margin: 4rem 2rem 0 2rem;
+
+  grid-row: 4/5;
+  grid-column: full-start/ full-end;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-content: center;
+  justify-items: center;
+
+  &__text-container {
+    grid-column: 2/3;
+    margin-bottom: 5rem;
+  }
+
+  &__title {
+    font-size: 8rem;
+    color: rgba($color-primary-light, 0.2);
+    text-transform: lowercase;
+    letter-spacing: 1rem;
+  }
+
+  &__text {
+    font-size: 3rem;
+    color: $color-white;
+    background-color: $color-primary;
+    white-space: nowrap;
+    margin-bottom: 3rem;
+  }
+
+  &__link {
+    font-size: 1.5rem;
+    color: $color-primary;
+  }
+}

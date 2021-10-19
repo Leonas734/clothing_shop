@@ -1,0 +1,31 @@
+@mixin link {
+  color: $color-primary-light;
+  text-decoration: none;
+  font-size: 1rem;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+@mixin button {
+  border: none;
+  text-transform: uppercase;
+  transition: all 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+@mixin sale-text {
+  writing-mode: vertical-lr;
+  margin: auto;
+  position: absolute;
+  text-transform: uppercase;
+  letter-spacing: 2rem;
+  font-size: 1.8rem;
+  &:after {
+    background-color: $color-primary-dark;
+    content: "";
+    position: absolute;
+  }
+}

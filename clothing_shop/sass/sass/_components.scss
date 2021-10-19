@@ -1,351 +1,90 @@
-.logo {
-  color: $color-primary;
-  text-transform: lowercase;
-  font-weight: 500;
-  font-size: 4rem;
-  letter-spacing: 1px;
-  text-decoration: none;
-  font-size: 3rem;
-
-  &-dot {
-    color: $color-secondary;
-  }
-}
-
-.link {
-  padding: 0 1.3rem;
-  justify-self: center;
-  color: $color-primary-light;
-  text-decoration: none;
-  font-size: 1.15rem;
-  text-transform: uppercase;
-  padding: 0 2rem;
+.cart {
+  fill: $color-primary-light;
+  height: 3rem;
+  width: 3rem;
   transition: 0.5s;
 
   &:hover {
     transform: scale(1.1);
-    color: $color-secondary;
     fill: $color-secondary; // Fill for the SVG items
   }
+}
 
-  &--active {
-    text-decoration: underline;
+.text-container {
+  text-align: center;
+  &__title {
+    text-transform: uppercase;
+    font-size: 4rem;
+    color: $color-primary-light;
+  }
+
+  &__text {
+    font-size: 2rem;
     color: $color-primary-dark;
-    text-underline-offset: 2px;
   }
 }
 
-.btn {
-  width: 14rem;
-  height: 4rem;
-  text-transform: uppercase;
-  background-color: $color-primary;
-  color: white;
-  border: none;
-  font-weight: 600;
-  transition: 0.3s;
-  margin-top: 1.5rem;
+.btn-small {
+  @include button;
+  background-color: $color-primary-dark;
+  color: $color-white;
+  padding: 1rem 2rem;
+  transition: all 0.5s;
+}
 
-  &:hover {
-    transform: scale(1.1);
+.btn-large {
+  @include button;
+  padding: 2rem 5rem;
+  background-color: $color-white;
+  color: $color-primary-dark;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.product {
+  &__img {
+    object-fit: cover;
+    width: 100%;
   }
-}
+  &__title {
+    text-align: center;
+  }
 
-.hash-tag-medium {
-  font-size: 4.2rem;
-  color: $color-primary;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+  &__price {
+    text-align: center;
+  }
 
-.nav {
-  padding: 0 4rem;
-  position: fixed;
-  background-color: white;
-  z-index: 999;
-  display: flex;
-  align-items: baseline;
-  width: 100%;
-  &__logo {
-    padding-right: 3rem;
+  &__image-container {
+    overflow: hidden;
+    position: relative;
+
+    > img:not(:first-child) {
+      position: absolute;
+    }
+  }
+
+  &__arrow {
+    height: 3rem;
+    width: 3rem;
+    z-index: 1;
+    position: absolute;
+    margin: auto;
+
+    &--left {
+      top: 45%;
+      left: 1%;
+    }
+
+    &--right {
+      top: 45%;
+      right: 1%;
+    }
   }
 
   &__cart {
-    align-self: center;
-    margin-top: 5px;
-    margin-left: auto;
-    display: flex;
-    margin-top: 1rem;
-
-    &-icon {
-      fill: $color-primary-light;
-      height: 2rem;
-      width: 6rem;
-    }
-    &-total {
-      margin-right: 1rem;
-      font-size: 1.2rem;
-      display: inline-block;
-      position: absolute;
-      margin: auto;
-      right: 8.5rem;
-      top: 2.2rem;
-    }
-
-    &-products {
-      overflow-y: scroll;
-      position: absolute;
-      margin-left: auto;
-      right: 1rem;
-      top: 4rem;
-      width: 15vw;
-      min-height: 10vh;
-      max-height: 30vh;
-      background-color: rgba($color-white, 0.8);
-      display: none;
-    }
-    &-product {
-      margin-top: 2rem;
-      height: 8rem;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 50% 1fr;
-      grid-template-rows: 1fr;
-
-      &-image {
-        grid-column: 1/2;
-        grid-row: 1/2;
-        width: 100%;
-        object-fit: contain;
-        height: 8rem;
-      }
-
-      &-title {
-        color: $color-primary-light;
-        font-size: 2rem;
-        grid-column: 2/3;
-        grid-row: 1/2;
-      }
-
-      &-price {
-        font-size: 1.5rem;
-        margin-top: 4rem;
-        grid-column: 2/3;
-        grid-row: 1/2;
-      }
-    }
-    &-checkout-button {
-      display: none;
-      width: 100%;
-      justify-self: center;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      &:hover {
-        transform: scale(1);
-      }
-    }
-
-    &-checkout-message {
-      justify-self: center;
-      align-self: center;
-      font-size: 1.6rem;
-      color: $color-primary-light;
-    }
-  }
-}
-
-.shop-outfit {
-  display: grid;
-  height: 100%;
-  align-items: start;
-  justify-items: center;
-
-  &-women {
-    grid-template-columns: [column-start main-start]40%[main-end] 1fr[column-end];
-    grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
-  }
-
-  &-men {
-    grid-template-columns: [column-start main-start]1fr[main-end] 40%[column-end];
-    grid-template-rows: [row-start categories-start] 10% [categories-end] 1fr [row-end];
-  }
-
-  row-gap: 1rem;
-  column-gap: 2rem;
-  overflow: hidden;
-  padding: 0 2rem;
-
-  &__shop-now {
-    &-women {
-      grid-column: main-start / main-end;
-      grid-row: categories-end/ row-end;
-    }
-    &-men {
-      grid-column: main-end / column-end;
-      grid-row: categories-end/ row-end;
-    }
-
-    text-align: center;
-    position: relative;
-    width: 100%;
-
-    &__title {
-      margin-top: -2rem;
-      padding-bottom: 5.2rem;
-      font-size: 5rem;
-      color: $color-primary;
-      text-transform: uppercase;
-    }
-
-    &__img {
-      width: 100%;
-    }
-
-    &__btn {
-      font-weight: 600;
-      border: none;
-      text-transform: uppercase;
-      padding: 1.5rem 4rem;
-      background-color: white;
-      color: $color-primary-light;
-      font-size: 1rem;
-      position: absolute;
-      top: 85%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      transition: 0.5s all;
-
-      &:hover {
-        transform: translate(-50%, -50%) scale(1.1);
-      }
-    }
-  }
-  // Nav bar top of grid
-  &__categories {
-    &-women {
-      grid-column: main-end / column-end;
-      grid-row: categories-start / categories-end;
-    }
-    &-men {
-      grid-column: main-start/ main-end;
-      grid-row: categories-start / categories-end;
-    }
-
-    justify-self: start;
-    align-self: end;
-
-    > .category {
-      font-size: 1rem;
-      padding-left: 0;
-      padding-right: 3rem;
-      text-decoration: none;
-    }
-  }
-  // Products
-  &__products {
-    &-women {
-      grid-column: main-end/ column-end;
-      grid-row: categories-end / row-end;
-    }
-    &-men {
-      grid-column: main-start/ main-end;
-      grid-row: categories-end / row-end;
-    }
-    grid-column-gap: 2rem;
-    padding-top: 2rem;
-    width: 100%;
-    height: 100%;
-
-    display: grid;
-    grid-template-columns: [column-start product-column-1] 1fr [product-column-2] 1fr [product-column-3] 1fr [column-end];
-    grid-template-rows: [row-start product-row-1] 1fr [product-row-2] 1fr [row-end];
-  }
-
-  &__product {
-    display: grid;
-    grid-template-rows: 80% 10% 10%;
-    &-title {
-      padding-top: 1rem;
-      text-align: center;
-      grid-row: 2/3;
-      color: $color-primary-light;
-      font-size: 1.5rem;
-      font-weight: 300;
-    }
-    &-price {
-      text-align: center;
-      grid-row: 3/4;
-    }
-    &-image-container {
-      grid-row: 1/2;
-      overflow: hidden;
-      position: relative;
-    }
-    &-image {
-      height: 100%;
-      width: 100%;
-      object-fit: contain;
-      position: absolute;
-      transition: transform 1s;
-    }
-
-    &-cart {
-      height: 2.5rem;
-      width: 2.5rem;
-      z-index: 1;
-      position: absolute;
-      margin-left: auto;
-      right: 1rem;
-      top: 2rem;
-      fill: $color-primary-light;
-      display: none;
-      transition: 0.5s;
-
-      &--active {
-        fill: $color-secondary;
-      }
-    }
-
-    &-arrow {
-      fill: $color-primary-light;
-      z-index: 1;
-      position: absolute;
-      height: 2rem;
-      width: 2rem;
-      top: 50%;
-      &-left {
-        left: 2%;
-      }
-      &-right {
-        right: 2%;
-      }
-    }
-
-    &-1 {
-      grid-column: product-column-1 / product-column-2;
-      grid-row: product-row-1 / product-row-2;
-    }
-    &-2 {
-      grid-column: product-column-2 / product-column-3;
-      grid-row: product-row-1 / product-row-2;
-    }
-    &-3 {
-      grid-column: product-column-3 / column-end;
-      grid-row: product-row-1 / product-row-2;
-    }
-    &-4 {
-      grid-column: product-column-1 / product-column-2;
-      grid-row: product-row-2 / row-end;
-    }
-    &-5 {
-      grid-column: product-column-2 / product-column-3;
-      grid-row: product-row-2 / row-end;
-    }
-    &-6 {
-      grid-column: product-column-3 / column-end;
-      grid-row: product-row-2 / row-end;
-    }
+    position: absolute;
+    margin: auto;
+    top: 2%;
+    right: 5%;
   }
 }

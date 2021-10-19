@@ -1,0 +1,55 @@
+.nav-bar {
+  grid-row: 1/2;
+  grid-column: full-start/full-end;
+  display: grid;
+  grid-template-columns:
+    minmax(min-content, 10%) minmax(min-content, 50%)
+    1fr 1rem 5%;
+  align-items: baseline;
+  padding-top: 0.5rem;
+  background-color: $color-primary-very-light;
+  grid-column-gap: 2rem;
+
+  &__logo {
+    margin-left: 2rem;
+  }
+
+  &__links {
+    grid-column: 2/3;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(min-content, 5rem));
+    grid-column-gap: 2rem;
+    justify-items: center;
+    transform: translateY(-0.2rem);
+  }
+
+  &__link {
+    font-size: 1.2rem;
+    white-space: nowrap;
+  }
+
+  &__cart {
+    &-total {
+      grid-column: 4/5;
+      grid-row: 1/2;
+      justify-self: end;
+      font-size: 1.5rem;
+    }
+
+    &-icon {
+      grid-column: 5/6;
+      grid-row: 1/2;
+      align-self: center;
+      justify-self: start;
+      transform: translateY(-0.3rem);
+
+      &:hover {
+        transform: translateY(-0.3rem) scale(1.1);
+      }
+    }
+
+    &-products {
+      display: none;
+    }
+  }
+}
