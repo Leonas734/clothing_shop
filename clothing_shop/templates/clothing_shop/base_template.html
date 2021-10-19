@@ -9,13 +9,11 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap"
       rel="stylesheet"
     />
-    <!--
     <script
       type="text/javascript"
       defer
       src="{% static 'clothing_shop/javascript/script.js' %}"
     ></script>
-    -->
     <script type="text/javascript">
       NG_STATIC_FILES = {
         STATIC_URL: "{% static 'clothing_shop/' %}",
@@ -45,15 +43,19 @@
         <a href="#" class="nav-bar__link link-one">Pages</a>
         <a href="#" class="nav-bar__link link-one">Contact us</a>
       </div>
-      <div class="nav-bar__cart-total">1</div>
-      <svg class="nav-bar__cart-icon cart">
-        <use
-          xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
-        ></use>
-      </svg>
-      <div class="nav-bar__cart-products">
-        <div class="nav-bar__cart-checkout-message">No products in cart.</div>
-        <div class="nav-bar__cart-checkout-button btn">Check out now</div>
+      <div class="nav-bar__cart">
+        <div class="nav-bar__cart-total"></div>
+        <div class="nav-bar__cart-products">
+          <div class="nav-bar__cart-checkout-message">No products in cart.</div>
+          <div class="nav-bar__cart-checkout-button btn-small">
+            Check out now
+          </div>
+        </div>
+        <svg class="nav-bar__cart-icon cart">
+          <use
+            xlink:href="{% static 'clothing_shop/img/sprite.svg' %}#icon-shopping-basket "
+          ></use>
+        </svg>
       </div>
     </nav>
 

@@ -4,7 +4,7 @@
   display: grid;
   grid-template-columns:
     minmax(min-content, 10%) minmax(min-content, 50%)
-    1fr 1rem 5%;
+    1fr minmax(min-content, 5%);
   align-items: baseline;
   padding-top: 0.5rem;
   background-color: $color-primary-very-light;
@@ -29,19 +29,24 @@
   }
 
   &__cart {
+    align-self: center;
+    justify-self: start;
+    grid-column: 4/5;
+    grid-row: 1/2;
+    position: relative;
+    display: grid;
+    grid-column-gap: 1rem;
+
     &-total {
-      grid-column: 4/5;
+      grid-column: 1/2;
       grid-row: 1/2;
-      justify-self: end;
       font-size: 1.5rem;
+      align-self: center;
     }
 
     &-icon {
-      grid-column: 5/6;
-      grid-row: 1/2;
-      align-self: center;
-      justify-self: start;
       transform: translateY(-0.3rem);
+      grid-column: 2/3;
 
       &:hover {
         transform: translateY(-0.3rem) scale(1.1);
@@ -49,7 +54,55 @@
     }
 
     &-products {
+      position: absolute;
+      margin: auto;
+      right: 0.5rem;
+      top: 3rem;
+      z-index: 2;
+      max-height: 20rem;
+      min-height: 10rem;
+      width: 20rem;
+      overflow-y: scroll;
+      background-color: rgba($color-primary-very-light, 0.9);
       display: none;
+    }
+
+    &-product {
+      display: grid;
+      padding: 2rem 2rem 0 2rem;
+      &-image {
+        height: 100%;
+        width: 100%;
+      }
+      &-title {
+        text-align: center;
+        font-size: 2rem;
+      }
+
+      &-price {
+        text-align: center;
+        font-size: 1.5rem;
+      }
+    }
+
+    &-checkout {
+      &-button {
+        margin-top: 1rem;
+        text-align: center;
+      }
+      &-message {
+        text-align: center;
+        font-size: 2rem;
+        margin-top: 2rem;
+      }
     }
   }
 }
+
+// newDiv.classList.add("nav-bar__cart-product");
+// newDiv.setAttribute("data-product", `${product.id}`);
+// newDiv.innerHTML = `
+//   <img class="nav-bar__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
+//   <div class="nav-bar__cart-product-title">${product.title}</div>
+//   <div class="nav-bar__cart-product-price">£${product.price}</div>
+//   `;

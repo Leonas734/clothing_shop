@@ -19,22 +19,26 @@ async function loadProductToCart(productId) {
   const images = result.images;
 
   const newDiv = document.createElement("div");
-  newDiv.classList.add("nav__cart-product");
+  newDiv.classList.add("nav-bar__cart-product");
   newDiv.setAttribute("data-product", `${product.id}`);
   newDiv.innerHTML = `
-    <img class="nav__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
-    <div class="nav__cart-product-title">${product.title}</div>
-    <div class="nav__cart-product-price">£${product.price}</div>
+    <img class="nav-bar__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
+    <div class="nav-bar__cart-product-title">${product.title}</div>
+    <div class="nav-bar__cart-product-price">£${product.price}</div>
     `;
-  const cartProductDiv = document.querySelector(".nav__cart-products");
+  const cartProductDiv = document.querySelector(".nav-bar__cart-products");
   cartProductDiv.prepend(newDiv);
 }
 
 function updateCartTotalProducts() {
   const localStorageProducts = JSON.parse(localStorage.getItem("products"));
-  const cartTotalEl = document.querySelector(".nav__cart-total");
-  const checkoutButton = document.querySelector(".nav__cart-checkout-button");
-  const checkoutMessage = document.querySelector(".nav__cart-checkout-message");
+  const cartTotalEl = document.querySelector(".nav-bar__cart-total");
+  const checkoutButton = document.querySelector(
+    ".nav-bar__cart-checkout-button"
+  );
+  const checkoutMessage = document.querySelector(
+    ".nav-bar__cart-checkout-message"
+  );
   if (localStorageProducts.length < 1) {
     cartTotalEl.innerHTML = "";
     checkoutButton.style.display = "none";
@@ -43,7 +47,7 @@ function updateCartTotalProducts() {
   }
   checkoutMessage.style.display = "none";
   cartTotalEl.innerHTML = localStorageProducts.length;
-  checkoutButton.style.display = "flex";
+  checkoutButton.style.display = "block";
 }
 
 function changeCartLogoColour(cartEl, removeItem = false) {
@@ -76,73 +80,68 @@ function productInCart(productId) {
 
 ///////////
 /// MAIN FUNCTIONS
-function mainSectionLinkClickEventHandler() {
-  document
-    .querySelector(".section-main__links")
-    .addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetClassNames = e.target.classList.value;
-      const mainSectionEl = document.querySelector(".section-main");
-      const mainSectionTitleEl = document.querySelector(".section-main__title");
-      let newTitle;
-      let newImgURL;
+function headerLinkEvHandler() {
+  document.querySelector(".header__links").addEventListener("click", (e) => {
+    console.log(e);
+    e.preventDefault();
+    const targetClassNames = e.target.classList.value;
+    const headerEl = document.querySelector(".header");
+    const headerText = document.querySelector(".header__text");
+    let newTitle;
+    let newImgURL;
 
-      if (targetClassNames.includes("women")) {
-        newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-1.jpg`;
-        newTitle = "Simplify<br>Everything";
-      } else if (targetClassNames.includes("men")) {
-        newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-2.jpg`;
-        newTitle = "Recycled<br>Sweaters";
-      } else if (targetClassNames.includes("sale")) {
-        newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/sale.jpg`;
-        newTitle = "Autumn<br>Sale";
-      } else {
-        return;
-      }
-      mainSectionEl.style.backgroundImage = `url(${newImgURL})`;
-      mainSectionTitleEl.innerHTML = newTitle;
-      addActiveClassNameToElement(e.target, "link--active");
-    });
+    if (targetClassNames.includes("women")) {
+      newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-1.jpg`;
+      newTitle = "Simplify<br>Everything";
+    } else if (targetClassNames.includes("men")) {
+      newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/model-image-2.jpg`;
+      newTitle = "Recycled<br>Sweaters";
+    } else if (targetClassNames.includes("sale")) {
+      newImgURL = `${NG_STATIC_FILES.STATIC_URL}/img/sale.jpg`;
+      newTitle = "Autumn<br>Sale";
+    } else {
+      return;
+    }
+    headerEl.style.backgroundImage = `url(${newImgURL})`;
+    headerText.innerHTML = newTitle;
+    addActiveClassNameToElement(e.target, "link-two--active");
+  });
 }
 
 function initProductEvents() {
-  offsetEachImage();
-  showCartOnProductHover();
   addEvListenerToProducts();
 
-  function offsetEachImage(productImgs) {
-    const allImgContainers = document.querySelectorAll(
-      ".shop-outfit__product-image-container"
-    );
-    allImgContainers.forEach((imgContainer) => {
-      productImgs = [...imgContainer.getElementsByTagName("img")];
-      productImgs.forEach((img, index) => {
-        img.style.left = `${100 * index}%`;
-      });
+  const allImgContainers = document.querySelectorAll(
+    ".product__image-container"
+  );
+  allImgContainers.forEach((imageContainer) => {
+    offsetImages(imageContainer);
+    showCartOnProductHover(imageContainer);
+  });
+
+  ////
+  // initProductEvents() MAIN FUNCTIONS
+  function offsetImages(imageContainer) {
+    productImgs = [...imageContainer.getElementsByTagName("img")];
+    productImgs.forEach((img, index) => {
+      img.style.left = `${100 * index}%`;
     });
   }
 
-  function showCartOnProductHover() {
+  function showCartOnProductHover(imageContainer) {
     /* Have to use mouseeenter / mouseleave to ensure cart doesn't get
     hidden when user hovers over the cart element or arrow elements */
-    const shopOutfitProductImgContainers = document.querySelectorAll(
-      ".shop-outfit__product-image-container"
-    );
 
-    shopOutfitProductImgContainers.forEach((imgContainer) => {
-      imgContainer.addEventListener("mouseenter", (e) => {
-        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-          "initial";
-      });
-      imgContainer.addEventListener("mouseleave", (e) => {
-        imgContainer.querySelector(".shop-outfit__product-cart").style.display =
-          "none";
-      });
+    imageContainer.addEventListener("mouseenter", (e) => {
+      imageContainer.querySelector(".product__cart").style.display = "initial";
+    });
+    imageContainer.addEventListener("mouseleave", (e) => {
+      imageContainer.querySelector(".product__cart").style.display = "none";
     });
   }
 
   function addEvListenerToProducts() {
-    const productsDivs = document.querySelectorAll(".shop-outfit__products");
+    const productsDivs = document.querySelectorAll(".shop-now__products");
     productsDivs.forEach((productsDiv) => {
       productsDiv.addEventListener("click", (e) => {
         // User has a small chance of clicking 'use' element inside the 'svg' element
@@ -167,10 +166,11 @@ function initProductEvents() {
     const totalSlides = productImgs.length;
     let currSlide = +imgContainer.dataset.slide;
 
-    if (arrowClassNames.includes("arrow-right")) {
+    if (arrowClassNames.includes("product__arrow--right")) {
       currSlide -= 1;
     }
-    if (arrowClassNames.includes("arrow-left")) {
+    if (arrowClassNames.includes("product__arrow--left")) {
+      console.log("hello");
       currSlide += 1;
     }
     // End of slide reached, reset currSlide
@@ -189,6 +189,7 @@ function initProductEvents() {
 
   async function updateProductCart(cartEl) {
     const productId = cartEl.parentElement.dataset.product;
+    console.log(productId);
     if (productInCart(productId)) {
       changeCartLogoColour(cartEl, (removeItem = true));
       removeProductFromLocalStorage(productId);
@@ -204,7 +205,7 @@ function initProductEvents() {
 
   function removeProductFromCart(productId) {
     const productsDiv = [
-      ...document.querySelector(".nav__cart-products").children,
+      ...document.querySelector(".nav-bar__cart-products").children,
     ];
     productsDiv.forEach((product) => {
       if (product.dataset.product === productId) {
@@ -218,23 +219,23 @@ function initProductEvents() {
   }
 
   function userClickedAddToCart(element) {
-    return element.classList.value.includes("product-cart") ? true : false;
+    return element.classList.value.includes("product__cart") ? true : false;
   }
 }
 
 function addSaleSectionHoverEffect() {
-  const saleDiv = document.querySelector(".section-sale");
-  const manSaleSection = document.querySelector(".section-sale__man");
-  const womanSaleSection = document.querySelector(".section-sale__woman");
+  const saleDiv = document.querySelector(".sale");
+  const manSaleSection = document.querySelector(".sale__man");
+  const womanSaleSection = document.querySelector(".sale__woman");
 
   saleDiv.addEventListener("mouseover", (e) => {
     const divClassNames = e.target.classList.value;
-    if (divClassNames.includes("section-sale__man")) {
+    if (divClassNames.includes("sale__man")) {
       womanSaleSection.style.opacity = "50%";
       manSaleSection.style.transform = "scale(1.1)";
       womanSaleSection.style.transform = "scale(0.95)";
     }
-    if (divClassNames.includes("section-sale__woman")) {
+    if (divClassNames.includes("sale__woman")) {
       manSaleSection.style.opacity = "50%";
       womanSaleSection.style.transform = "scale(1.1)";
       manSaleSection.style.transform = "scale(0.95)";
@@ -244,8 +245,8 @@ function addSaleSectionHoverEffect() {
   saleDiv.addEventListener("mouseout", (e) => {
     const divClassNames = e.target.classList.value;
     if (
-      divClassNames.includes("section-sale__man") ||
-      divClassNames.includes("section-sale__woman")
+      divClassNames.includes("sale__man") ||
+      divClassNames.includes("sale__woman")
     ) {
       womanSaleSection.style.opacity = "100%";
       manSaleSection.style.opacity = "100%";
@@ -255,22 +256,9 @@ function addSaleSectionHoverEffect() {
   });
 }
 
-function loadCartProductsFromStorage() {
-  const products = JSON.parse(localStorage.getItem("products"));
-  products.forEach((productId) => {
-    cartEl = document
-      .querySelector(`[data-product="${productId}"]`)
-      .querySelector(".shop-outfit__product-cart");
-
-    changeCartLogoColour(cartEl, (removeItem = false));
-    loadProductToCart(productId);
-  });
-  updateCartTotalProducts();
-}
-
 function showCartProductsOnIconHover() {
-  const cartDiv = document.querySelector(".nav__cart");
-  const productsDiv = document.querySelector(".nav__cart-products");
+  const cartDiv = document.querySelector(".nav-bar__cart");
+  const productsDiv = document.querySelector(".nav-bar__cart-products");
   cartDiv.addEventListener("mouseenter", (e) => {
     productsDiv.style.display = "grid";
   });
@@ -279,12 +267,25 @@ function showCartProductsOnIconHover() {
   });
 }
 
+function loadCartProductsFromStorage() {
+  const products = JSON.parse(localStorage.getItem("products"));
+  products.forEach((productId) => {
+    cartEl = document
+      .querySelector(`[data-product="${productId}"]`)
+      .querySelector(".product__cart");
+
+    changeCartLogoColour(cartEl, (removeItem = false));
+    loadProductToCart(productId);
+  });
+  updateCartTotalProducts();
+}
+
 function init() {
-  mainSectionLinkClickEventHandler();
+  headerLinkEvHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
-  loadCartProductsFromStorage();
   showCartProductsOnIconHover();
+  loadCartProductsFromStorage();
 }
 
 init();

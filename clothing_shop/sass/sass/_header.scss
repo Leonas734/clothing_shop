@@ -7,6 +7,7 @@
 
   display: grid;
   grid-template-columns: minmax(min-content, 1fr) 1fr;
+  transition: all 0.5s;
 
   // USE THIS FOR MOBILE SIZE TO CENTER IMG
   // background-position: center;

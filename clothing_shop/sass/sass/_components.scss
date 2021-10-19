@@ -45,6 +45,7 @@
   &__img {
     object-fit: cover;
     width: 100%;
+    transition: transform 0.5s;
   }
   &__title {
     text-align: center;
@@ -57,7 +58,6 @@
   &__image-container {
     overflow: hidden;
     position: relative;
-
     > img:not(:first-child) {
       position: absolute;
     }
@@ -86,5 +86,6 @@
     margin: auto;
     top: 2%;
     right: 5%;
+    display: none;
   }
 }
