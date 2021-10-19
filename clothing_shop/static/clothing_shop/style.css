@@ -453,3 +453,10 @@ body {
     border: none;
     height: 3.5rem;
     width: 15rem; }
+
+.mobile-nav {
+  background-color: orangered;
+  margin: auto;
+  position: fixed;
+  top: 20%;
+  z-index: 999; }
