@@ -280,12 +280,28 @@ function loadCartProductsFromStorage() {
   updateCartTotalProducts();
 }
 
+function initMobileNav() {
+  const mobileNav = document.querySelector(".mobile-nav");
+  closeMobileDivEvListener();
+  openMobileDivEvListener();
+  function closeMobileDivEvListener() {
+    const crossDiv = document.querySelector(".mobile-nav__cross");
+    mobileNav.addEventListener("click", (e) => {
+      // Checks if the event user clicked bubbled through the cross 'svg' element
+      if (e.path.indexOf(crossDiv) >= 0) {
+        mobileNav.style.display = "none";
+      }
+    });
+  }
+}
+
 function init() {
   headerLinkEvHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
   showCartProductsOnIconHover();
   loadCartProductsFromStorage();
+  initMobileNav();
 }
 
 init();
