@@ -14,7 +14,6 @@ async function loadProductToCart(productId) {
     `http://127.0.0.1:8000/get_product/${productId}`
   );
   result = await response.json();
-  // console.log(result);
   const product = result.product;
   const images = result.images;
 
@@ -25,6 +24,7 @@ async function loadProductToCart(productId) {
     <img class="nav-bar__cart-product-image" src="${NG_MEDIA_FILES.MEDIA_URL}/${images[0]}">
     <div class="nav-bar__cart-product-title">${product.title}</div>
     <div class="nav-bar__cart-product-price">£${product.price}</div>
+    <a href="#" class="nav-bar__cart-product-remove-btn link-one">Remove</a>
     `;
   const cartProductDiv = document.querySelector(".nav-bar__cart-products");
   cartProductDiv.prepend(newDiv);
@@ -50,11 +50,17 @@ function updateCartTotalProducts() {
   checkoutButton.style.display = "block";
 }
 
-function changeCartLogoColour(cartEl, removeItem = false) {
-  if (removeItem) {
-    cartEl.style.fill = "#777474";
+function changeCartLogoColour(productId) {
+  const colourOne = "rgb(119, 116, 116)";
+  const colourTwo = "rgb(254, 125, 151)";
+  const cartDiv = document
+    .querySelector(`.product__image-container[data-product='${productId}']`)
+    .querySelector(".product__cart");
+
+  if (cartDiv.style.fill == colourTwo) {
+    cartDiv.style.fill = colourOne;
   } else {
-    cartEl.style.fill = "#fe7d97";
+    cartDiv.style.fill = colourTwo;
   }
 }
 
@@ -82,7 +88,6 @@ function productInCart(productId) {
 /// MAIN FUNCTIONS
 function headerLinkEvHandler() {
   document.querySelector(".header__links").addEventListener("click", (e) => {
-    console.log(e);
     e.preventDefault();
     const targetClassNames = e.target.classList.value;
     const headerEl = document.querySelector(".header");
@@ -170,7 +175,6 @@ function initProductEvents() {
       currSlide -= 1;
     }
     if (arrowClassNames.includes("product__arrow--left")) {
-      console.log("hello");
       currSlide += 1;
     }
     // End of slide reached, reset currSlide
@@ -187,19 +191,17 @@ function initProductEvents() {
     });
   }
 
-  async function updateProductCart(cartEl) {
-    const productId = cartEl.parentElement.dataset.product;
-    console.log(productId);
+  async function updateProductCart(eventDiv) {
+    const productId = eventDiv.parentElement.dataset.product;
     if (productInCart(productId)) {
-      changeCartLogoColour(cartEl, (removeItem = true));
+      changeCartLogoColour(productId);
       removeProductFromLocalStorage(productId);
       removeProductFromCart(productId);
     } else {
-      changeCartLogoColour(cartEl, (removeItem = false));
+      changeCartLogoColour(productId);
       addProductToLocalStorage(productId);
       loadProductToCart(productId);
     }
-
     updateCartTotalProducts();
   }
 
@@ -274,10 +276,29 @@ function loadCartProductsFromStorage() {
       .querySelector(`[data-product="${productId}"]`)
       .querySelector(".product__cart");
 
-    changeCartLogoColour(cartEl, (removeItem = false));
+    changeCartLogoColour(productId);
     loadProductToCart(productId);
   });
   updateCartTotalProducts();
+}
+
+function initCartRemoveButton() {
+  const cartProducts = document.querySelector(".nav-bar__cart-products");
+  cartProducts.addEventListener("click", (e) => {
+    e.preventDefault();
+    const eventDivClassNames = e.target.classList;
+    const parentDiv = e.target.parentElement;
+    const productId = parentDiv.dataset.product;
+    if (eventDivClassNames.value.includes("remove-btn")) {
+      parentDiv.style.opacity = "0";
+      setTimeout(() => {
+        removeProductFromLocalStorage(productId);
+        changeCartLogoColour(productId);
+        parentDiv.remove();
+        updateCartTotalProducts();
+      }, 600);
+    }
+  });
 }
 
 function initMobileNav() {
@@ -302,12 +323,15 @@ function initMobileNav() {
   }
 }
 
+///////////
+// INIT
 function init() {
   headerLinkEvHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
   showCartProductsOnIconHover();
   loadCartProductsFromStorage();
+  initCartRemoveButton();
   initMobileNav();
 }
 

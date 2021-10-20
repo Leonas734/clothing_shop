@@ -206,14 +206,15 @@ body {
       top: 3rem;
       z-index: 2;
       max-height: 20rem;
-      min-height: 10rem;
-      width: 20rem;
+      min-height: 8rem;
+      width: 25rem;
       overflow-y: scroll;
       background-color: rgba(243, 243, 243, 0.9);
       display: none; }
     .nav-bar__cart-product {
       display: grid;
-      padding: 2rem 2rem 0 2rem; }
+      padding: 2rem 2rem 0 2rem;
+      transition: all 0.5s; }
       .nav-bar__cart-product-image {
         height: 100%;
         width: 100%; }
@@ -223,13 +224,20 @@ body {
       .nav-bar__cart-product-price {
         text-align: center;
         font-size: 1.5rem; }
+      .nav-bar__cart-product-remove-btn {
+        color: red;
+        text-align: center; }
+        .nav-bar__cart-product-remove-btn:hover {
+          color: red;
+          transform: scale(1); }
     .nav-bar__cart-checkout-button {
       margin-top: 1rem;
       text-align: center; }
     .nav-bar__cart-checkout-message {
       text-align: center;
       font-size: 2rem;
-      margin-top: 2rem; }
+      margin-top: 2rem;
+      color: #383838; }
 
 .header {
   grid-row: 2/3;
