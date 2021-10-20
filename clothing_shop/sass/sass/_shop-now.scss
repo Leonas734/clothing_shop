@@ -27,7 +27,7 @@
     }
     &--man {
       margin-left: 2rem;
-      grid-column: col-start 5 / col-end 8;
+      grid-column: col-start 6 / col-end 8;
     }
     grid-row: 2/3;
     display: flex;
@@ -60,7 +60,7 @@
       }
     }
     &--man {
-      grid-column: col-start 5 / col-end 8;
+      grid-column: col-start 6 / col-end 8;
       @media only screen and (max-width: $bp-large) {
         grid-column: col-start 1 / col-end 8;
       }
@@ -101,7 +101,7 @@
       }
     }
     &--man {
-      grid-column: columns-start / col-end 4;
+      grid-column: columns-start / col-end 5;
       @media only screen and (max-width: $bp-large) {
         grid-column: col-start 1 / col-end 8;
       }
