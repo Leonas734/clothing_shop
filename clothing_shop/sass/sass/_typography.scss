@@ -41,9 +41,10 @@
 }
 
 .link-three {
+  border-radius: 0.5rem;
   @include link;
-  background-color: $color-primary-light;
-  color: $color-white;
+  background-color: $color-primary-very-light;
+  color: $color-primary;
   width: 100%;
   text-align: center;
 }

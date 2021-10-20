@@ -57,13 +57,14 @@ body {
     color: #000000; }
 
 .link-three {
+  border-radius: 0.5rem;
   color: #777474;
   text-decoration: none;
   font-size: 1rem;
   text-transform: uppercase;
   transition: 0.5s;
-  background-color: #777474;
-  color: #fff;
+  background-color: #f3f3f3;
+  color: #383838;
   width: 100%;
   text-align: center; }
 
@@ -162,7 +163,8 @@ body {
     align-self: center;
     justify-self: center;
     font-size: 1.3rem;
-    display: none; }
+    display: none;
+    text-transform: uppercase; }
     @media only screen and (max-width: 37.5em) {
       .nav-bar__mobile-menu {
         display: block; } }
@@ -243,6 +245,8 @@ body {
       background-position: 35%; } }
   .header__text-container {
     align-self: center; }
+  .header__button {
+    margin-top: 1rem; }
   .header__links {
     position: absolute;
     margin: auto;
@@ -558,7 +562,7 @@ body {
     width: 15rem; }
 
 .mobile-nav {
-  background-color: rgba(254, 125, 151, 0.9);
+  background-image: linear-gradient(to top right, rgba(254, 125, 151, 0.7), rgba(243, 243, 243, 0.9));
   margin: auto;
   position: fixed;
   top: 0;

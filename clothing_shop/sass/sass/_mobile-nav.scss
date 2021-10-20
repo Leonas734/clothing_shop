@@ -1,5 +1,9 @@
 .mobile-nav {
-  background-color: rgba($color-secondary, 0.9);
+  background-image: linear-gradient(
+    to top right,
+    rgba($color-secondary, 0.7),
+    rgba($color-primary-very-light, 0.9)
+  );
   margin: auto;
   position: fixed;
   top: 0;
