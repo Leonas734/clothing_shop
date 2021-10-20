@@ -207,7 +207,7 @@ body {
       z-index: 2;
       max-height: 20rem;
       min-height: 8rem;
-      width: 25rem;
+      width: 31rem;
       overflow-y: scroll;
       background-color: rgba(243, 243, 243, 0.9);
       display: none; }
@@ -220,7 +220,8 @@ body {
         width: 100%; }
       .nav-bar__cart-product-title {
         text-align: center;
-        font-size: 2rem; }
+        font-size: 2rem;
+        color: #777474; }
       .nav-bar__cart-product-price {
         text-align: center;
         font-size: 1.5rem; }

@@ -76,7 +76,7 @@
       z-index: 2;
       max-height: 20rem;
       min-height: 8rem;
-      width: 25rem;
+      width: 31rem;
       overflow-y: scroll;
       background-color: rgba($color-primary-very-light, 0.9);
       display: none;
@@ -93,6 +93,7 @@
       &-title {
         text-align: center;
         font-size: 2rem;
+        color: $color-primary-light;
       }
 
       &-price {
