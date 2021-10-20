@@ -10,6 +10,10 @@
   );
   grid-template-rows: repeat(4, 1fr);
 
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-rows: repeat(8, 1fr);
+  }
+
   &__woman {
     margin: 2rem;
     grid-column: col-start 1 / col-end 4;
@@ -20,16 +24,32 @@
     position: relative;
     transition: all 0.5s;
 
+    @media only screen and (max-width: $bp-large) {
+      background-position: 60%;
+    }
+    @media only screen and (max-width: $bp-medium) {
+      grid-row: 1/5;
+      grid-column: col-start 1 / col-end 8;
+    }
+
     &-text {
       @include sale-text;
       left: 1.5rem;
       top: 5rem;
+      @media only screen and (max-width: $bp-small) {
+        writing-mode: horizontal-tb;
+        left: 2rem;
+        color: $color-white;
+      }
 
       &:after {
         height: 23%;
         width: 2px;
         left: 1.4rem;
         bottom: 105%;
+        @media only screen and (max-width: $bp-small) {
+          display: none;
+        }
       }
     }
   }
@@ -44,6 +64,14 @@
     background-position: 0 30%;
     display: flex;
     transition: all 0.5s;
+    @media only screen and (max-width: $bp-large) {
+      background-position: 30%;
+    }
+
+    @media only screen and (max-width: $bp-medium) {
+      grid-row: 5/9;
+      grid-column: col-start 1 / col-end 8;
+    }
 
     &-text {
       @include sale-text;
@@ -51,12 +79,20 @@
       align-self: flex-end;
       right: 1.5rem;
       bottom: 3.5rem;
+      color: $color-white;
+      @media only screen and (max-width: $bp-small) {
+        writing-mode: horizontal-tb;
+      }
 
       &:after {
+        background-color: $color-white;
         height: 33%;
         width: 2px;
         right: 1.3rem;
         top: 100%;
+        @media only screen and (max-width: $bp-small) {
+          display: none;
+        }
       }
     }
   }
@@ -67,6 +103,12 @@
     z-index: 1;
     border: solid 1px $color-white;
     padding: 2rem;
+    @media only screen and (max-width: $bp-medium) {
+      grid-row: 4/6;
+    }
+    @media only screen and (max-width: $bp-small) {
+      padding: 0;
+    }
   }
 
   &__text-box {
@@ -82,11 +124,18 @@
       font-size: 5rem;
       letter-spacing: 1rem;
       text-transform: uppercase;
+      @media only screen and (max-width: $bp-small) {
+        font-size: 3rem;
+      }
     }
     &__text {
       font-size: 2rem;
       letter-spacing: 1rem;
       color: $color-primary-light;
+      text-transform: lowercase;
+      @media only screen and (max-width: $bp-small) {
+        font-size: 1rem;
+      }
     }
   }
 }

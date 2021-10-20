@@ -18,6 +18,9 @@
   }
 
   &__image-container {
+    @media only screen and (max-width: $bp-large) {
+      display: none;
+    }
     &--woman {
       margin-right: 2rem;
       grid-column: col-start 1 / col-start 4;
@@ -52,9 +55,15 @@
   &__title {
     &--woman {
       grid-column: col-start 1 / col-end 3;
+      @media only screen and (max-width: $bp-large) {
+        grid-column: col-start 1 / col-end 8;
+      }
     }
     &--man {
       grid-column: col-start 5 / col-end 8;
+      @media only screen and (max-width: $bp-large) {
+        grid-column: col-start 1 / col-end 8;
+      }
     }
     justify-self: center;
     align-self: center;
@@ -62,6 +71,9 @@
   }
 
   &__categories {
+    @media only screen and (max-width: $bp-large) {
+      display: none;
+    }
     &--woman {
       grid-column: col-start 4 / columns-end;
     }
@@ -84,9 +96,15 @@
   &__products {
     &--woman {
       grid-column: col-start 4 / columns-end;
+      @media only screen and (max-width: $bp-large) {
+        grid-column: col-start 1 / col-end 8;
+      }
     }
     &--man {
       grid-column: columns-start / col-end 4;
+      @media only screen and (max-width: $bp-large) {
+        grid-column: col-start 1 / col-end 8;
+      }
     }
     grid-template-columns: repeat(auto-fit, minmax(31%, 1fr));
     display: grid;

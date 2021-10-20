@@ -1,3 +1,4 @@
+// Colours
 $color-primary: #383838;
 $color-primary-light: #777474;
 $color-primary-very-light: #f3f3f3;
@@ -7,8 +8,10 @@ $color-white: #fff;
 
 // Breakpoints
 $bp-large: 37.5em; // 600px
-$bp-medium: 55em;
+$bp-medium: 29.0625em; // 465px
+$bp-small: 22.8125em; // 365px
 
+// Fonts
 $font-primary: "Montserrat", sans-serif;
 
 * {
@@ -25,9 +28,6 @@ $font-primary: "Montserrat", sans-serif;
 html {
   box-sizing: border-box;
   font-size: 62.5%; // 1rem = 10px, 10px/16px = 62.5%
-  @media only screen and (max-width: $bp-large) {
-    font-size: 55%;
-  }
 }
 
 body {

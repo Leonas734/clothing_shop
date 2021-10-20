@@ -9,6 +9,10 @@
   grid-template-columns: minmax(min-content, 1fr) 1fr;
   transition: all 0.5s;
 
+  @media only screen and (max-width: $bp-medium) {
+    background-position: 35%;
+  }
+
   // USE THIS FOR MOBILE SIZE TO CENTER IMG
   // background-position: center;
 
