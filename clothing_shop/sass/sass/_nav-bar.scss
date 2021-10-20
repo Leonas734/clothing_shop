@@ -14,6 +14,16 @@
     margin-left: 2rem;
   }
 
+  &__mobile-menu {
+    grid-column: 3/4;
+    align-self: center;
+    justify-self: center;
+    font-size: 1.3rem;
+    display: none;
+    @media only screen and (max-width: $bp-large) {
+      display: block;
+    }
+  }
   &__links {
     grid-column: 2/3;
     display: grid;
@@ -21,6 +31,10 @@
     grid-column-gap: 2rem;
     justify-items: center;
     transform: translateY(-0.2rem);
+
+    @media only screen and (max-width: $bp-large) {
+      display: none;
+    }
   }
 
   &__link {

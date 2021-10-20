@@ -283,7 +283,8 @@ function loadCartProductsFromStorage() {
 function initMobileNav() {
   const mobileNav = document.querySelector(".mobile-nav");
   closeMobileDivEvListener();
-  openMobileDivEvListener();
+  openMobileNavEvListener();
+
   function closeMobileDivEvListener() {
     const crossDiv = document.querySelector(".mobile-nav__cross");
     mobileNav.addEventListener("click", (e) => {
@@ -291,6 +292,12 @@ function initMobileNav() {
       if (e.path.indexOf(crossDiv) >= 0) {
         mobileNav.style.display = "none";
       }
+    });
+  }
+  function openMobileNavEvListener() {
+    const mobileMenuDiv = document.querySelector(".nav-bar__mobile-menu");
+    mobileMenuDiv.addEventListener("click", (e) => {
+      mobileNav.style.display = "block";
     });
   }
 }
