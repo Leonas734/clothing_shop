@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Sass styling for clothing_shop",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "compile:sass": "node-sass sass/main.scss ../static/clothing_shop/style.css -w"
   },
