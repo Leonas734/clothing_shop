@@ -1,5 +1,6 @@
 import { initProductEvents } from "./initProductEvents.js";
 import { initCartEvents } from "./initCart.js";
+import { addActiveClassNameToElement } from "./helperFuncs.js";
 ///////////
 // INIT
 
