@@ -4,6 +4,7 @@ import { initCartEvents } from "./initCart.js";
 // INIT
 
 function init() {
+  initLocalStorage();
   headerLinkEvHandler();
   initProductEvents();
   addSaleSectionHoverEffect();
@@ -94,5 +95,12 @@ function initMobileNav() {
     mobileMenuDiv.addEventListener("click", (e) => {
       mobileNav.style.display = "block";
     });
+  }
+}
+
+function initLocalStorage() {
+  const products = window.localStorage.getItem("products");
+  if (!products) {
+    window.localStorage.setItem("products", JSON.stringify([]));
   }
 }

@@ -22,7 +22,9 @@ function initCartEvents() {
   }
 
   function loadCartProductsFromStorage() {
-    const products = JSON.parse(localStorage.getItem("products"));
+    const localStorageProducts = window.localStorage.getItem("products");
+    if (localStorageProducts.length < 1) return;
+    const products = JSON.parse(localStorageProducts);
     products.forEach((productId) => {
       const cartEl = document
         .querySelector(`[data-product="${productId}"]`)

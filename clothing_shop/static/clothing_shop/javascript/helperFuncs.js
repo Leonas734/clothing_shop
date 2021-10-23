@@ -65,21 +65,25 @@ function changeCartLogoColour(productId) {
 }
 
 function addProductToLocalStorage(productId) {
-  const products = JSON.parse(localStorage.getItem("products"));
+  const localStorageProducts = window.localStorage.getItem("products");
+  if (localStorageProducts.length < 1) return;
+  const products = JSON.parse(localStorageProducts);
   products.push(productId);
 
-  localStorage.setItem("products", JSON.stringify(products));
+  window.localStorage.setItem("products", JSON.stringify(products));
 }
 
 function removeProductFromLocalStorage(productId) {
-  const products = JSON.parse(localStorage.getItem("products"));
+  const products = JSON.parse(window.localStorage.getItem("products"));
   const productIndex = products.indexOf(productId);
   products.splice(productIndex, 1);
-  localStorage.setItem("products", JSON.stringify(products));
+  window.localStorage.setItem("products", JSON.stringify(products));
 }
 
 function productInCart(productId) {
-  const products = JSON.parse(localStorage.getItem("products"));
+  const localStorageProducts = window.localStorage.getItem("products");
+  if (localStorageProducts.length < 1) return;
+  const products = JSON.parse(localStorageProducts);
   const productIndex = products.indexOf(productId);
   return productIndex >= 0 ? true : false;
 }
