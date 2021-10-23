@@ -84,8 +84,10 @@ function initMobileNav() {
   function closeMobileDivEvListener() {
     const crossDiv = document.querySelector(".mobile-nav__cross");
     mobileNav.addEventListener("click", (e) => {
-      // Checks if the event user clicked bubbled through the cross 'svg' element
-      if (e.path.indexOf(crossDiv) >= 0) {
+      console.log(e.composedPath());
+      /* Checks if the event user clicked bubbled through the cross 'svg' element
+       or user clicked outside any nav link */
+      if (e.composedPath().indexOf(crossDiv) >= 0 || e.target === mobileNav) {
         mobileNav.style.display = "none";
       }
     });
